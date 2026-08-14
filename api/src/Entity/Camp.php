@@ -66,6 +66,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiFilter(filterClass: SearchFilter::class, properties: ['isPrototype'])]
 #[ApiFilter(filterClass: CampCollaboratorFilter::class)]
 #[ORM\Entity(repositoryClass: CampRepository::class)]
+#[ORM\UniqueConstraint(name: 'hitobitoprovider_hitobitoeventid_unique', columns: ['hitobitoProvider', 'hitobitoEventId'])]
 #[ORM\Index(columns: ['isPrototype'])]
 #[ORM\Index(columns: ['isShared'])]
 #[ORM\Index(columns: ['isPublic'])]
@@ -75,6 +76,14 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
     public const ITEM_NORMALIZATION_CONTEXT = [
         'groups' => ['read', 'Camp:Periods', 'Period:Days', 'Camp:CampCollaborations', 'CampCollaboration:User'],
         'swagger_definition_name' => 'read',
+    ];
+
+    public const HITOBITO_PROVIDER_PBSMIDATA = 'pbsmidata';
+    public const HITOBITO_PROVIDER_CEVIDB = 'cevidb';
+    public const HITOBITO_PROVIDER_JUBLADB = 'jubladb';
+
+    public const VALID_HITOBITO_PROVIDERS = [
+        self::HITOBITO_PROVIDER_PBSMIDATA,
     ];
 
     #[AssertContainsAtLeastOneManager(groups: ['update'])]
@@ -434,6 +443,31 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
     #[Groups(['read', 'write'])]
     #[ORM\Column(type: 'boolean', options: ['default' => false])]
     public bool $printYSLogoOnPicasso = false;
+
+    /**
+     * The Hitobito provider (such as MiData) this camp was created from, if any.
+     */
+    #[Assert\Choice(choices: self::VALID_HITOBITO_PROVIDERS)]
+    #[ApiProperty(writable: false, example: self::HITOBITO_PROVIDER_PBSMIDATA)]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 16, nullable: true)]
+    public ?string $hitobitoProvider = null;
+
+    /**
+     * The id of the corresponding event in Hitobito, if this camp was created from one.
+     */
+    #[ApiProperty(writable: false, example: '1234')]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    public ?string $hitobitoEventId = null;
+
+    /**
+     * The last time camp data was synced from Hitobito.
+     */
+    #[ApiProperty(writable: false, example: '2025-10-01T00:00:00+00:00', openapiContext: ['format' => 'date-time'])]
+    #[Groups(['read'])]
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    public ?\DateTimeInterface $hitobitoLastSyncTime = null;
 
     /**
      * The person that created the camp. This value never changes, even when the person
