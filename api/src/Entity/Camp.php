@@ -462,14 +462,6 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
     public ?string $hitobitoEventId = null;
 
     /**
-     * The last time camp data was synced from Hitobito.
-     */
-    #[ApiProperty(writable: false, example: '2025-10-01T00:00:00+00:00', openapiContext: ['format' => 'date-time'])]
-    #[Groups(['read'])]
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    public ?\DateTimeInterface $hitobitoLastSyncTime = null;
-
-    /**
      * The person that created the camp. This value never changes, even when the person
      * leaves the camp.
      */
