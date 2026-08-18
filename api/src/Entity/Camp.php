@@ -15,6 +15,7 @@ use App\Doctrine\Filter\CampCollaboratorFilter;
 use App\InputFilter;
 use App\Repository\CampRepository;
 use App\Serializer\Normalizer\RelatedCollectionLink;
+use App\Service\Hitobito\HitobitoProvider;
 use App\State\CampCreateProcessor;
 use App\State\CampRemoveProcessor;
 use App\State\CampUpdateProcessor;
@@ -76,14 +77,6 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
     public const ITEM_NORMALIZATION_CONTEXT = [
         'groups' => ['read', 'Camp:Periods', 'Period:Days', 'Camp:CampCollaborations', 'CampCollaboration:User'],
         'swagger_definition_name' => 'read',
-    ];
-
-    public const HITOBITO_PROVIDER_PBSMIDATA = 'pbsmidata';
-    public const HITOBITO_PROVIDER_CEVIDB = 'cevidb';
-    public const HITOBITO_PROVIDER_JUBLADB = 'jubladb';
-
-    public const VALID_HITOBITO_PROVIDERS = [
-        self::HITOBITO_PROVIDER_PBSMIDATA,
     ];
 
     #[AssertContainsAtLeastOneManager(groups: ['update'])]
@@ -447,11 +440,10 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
     /**
      * The Hitobito provider (such as MiData) this camp was created from, if any.
      */
-    #[Assert\Choice(choices: self::VALID_HITOBITO_PROVIDERS)]
-    #[ApiProperty(writable: false, example: self::HITOBITO_PROVIDER_PBSMIDATA)]
+    #[ApiProperty(writable: false, example: HitobitoProvider::PBSMIDATA->value)]
     #[Groups(['read'])]
-    #[ORM\Column(type: 'string', length: 16, nullable: true)]
-    public ?string $hitobitoProvider = null;
+    #[ORM\Column(type: 'string', length: 16, nullable: true, enumType: HitobitoProvider::class)]
+    public ?HitobitoProvider $hitobitoProvider = null;
 
     /**
      * The id of the corresponding event in Hitobito, if this camp was created from one.

@@ -73,6 +73,10 @@ api:
       clientId: {{ .Environment.Values | getOrNil "OAUTH_JUBLADB_CLIENT_ID" | default "WrKABq7GwmC6h1F0W73OGX_fOTHWWXnKXfrPMHOdQWY" | quote }}
       clientSecret: {{ .Environment.Values | getOrNil "OAUTH_JUBLADB_CLIENT_SECRET" | default "oQ164RDMIAocL6PhmCoeT1Ymcg-7WcOJZdxCnIph5gM" | quote }}
       baseUrl: {{ .Environment.Values | getOrNil "OAUTH_JUBLADB_BASE_URL" | default "https://jubla.puzzle.ch" | quote }}
+  hitobito:
+    tokenEncryptionKey: {{ .Environment.Values | getOrNil "HITOBITO_TOKEN_ENCRYPTION_KEY" | quote }}
+    pbsmidataApiBaseUrl: {{ .Environment.Values | getOrNil "HITOBITO_PBSMIDATA_API_BASE_URL" | default "https://pbs.puzzle.ch/api/" | quote }}
+    oauthScopes: {{ .Environment.Values | getOrNil "HITOBITO_API_OAUTH_SCOPES" | default "name,events,event_participations,people" | quote }}
   num_threads: {{ .Environment.Values | getOrNil "API_NUM_THREADS" | default false }}
   resources:
     requests:
