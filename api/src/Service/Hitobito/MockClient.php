@@ -11,7 +11,7 @@ class MockClient implements ClientInterface {
     public const string EVENT_ID_LEADER = '123';
     public const string EVENT_ID_COLEADER = '456';
 
-    public function getEventParticipations(int $hitobitoUserId, ?string $eventId = null): array {
+    public function getEventParticipations(?string $eventId = null): array {
         $mockParticipations = [
             new EventParticipation(
                 '1',

@@ -52,8 +52,8 @@ class EventAccessChecker {
      * Check whether a user has access to the specified event
      * Throws corresponding exceptions if access is not granted.
      */
-    public function checkAccess(HitobitoProvider $provider, ClientInterface $client, int $hitobitoUserId, string $eventId): void {
-        $participations = $client->getEventParticipations($hitobitoUserId, $eventId);
+    public function checkAccess(HitobitoProvider $provider, ClientInterface $client, string $eventId): void {
+        $participations = $client->getEventParticipations($eventId);
 
         if ([] === $participations) {
             throw new NotFoundHttpException("Event \"{$eventId}\" not found");

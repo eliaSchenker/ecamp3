@@ -9,24 +9,27 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Client implements ClientInterface {
     private readonly HttpClientInterface $httpClient;
+    private readonly int $hitobitoUserId;
 
     public function __construct(
         HttpClientInterface $client,
         string $baseUrl,
-        string $accessToken
+        AuthContext $authContext
     ) {
         $this->httpClient = $client->withOptions([
             // add a trailing slash, if not given (if no trailing slash is present in base uri, its path will be overwritten upon any request)
             'base_uri' => rtrim($baseUrl, '/').'/',
-            'auth_bearer' => $accessToken,
+            'auth_bearer' => $authContext->getAccessToken(),
         ]);
+        // the access token belongs to this user, so both always describe the same Hitobito user
+        $this->hitobitoUserId = $authContext->getUserId();
     }
 
     /**
      * @return EventParticipation[]
      */
-    public function getEventParticipations(int $hitobitoUserId, ?string $eventId = null): array {
-        $filter = ['participant_id' => ['eq' => $hitobitoUserId]];
+    public function getEventParticipations(?string $eventId = null): array {
+        $filter = ['participant_id' => ['eq' => $this->hitobitoUserId]];
         if (null !== $eventId) {
             $filter['event_id'] = ['eq' => $eventId];
         }

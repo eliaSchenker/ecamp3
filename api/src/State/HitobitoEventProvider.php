@@ -8,16 +8,11 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProviderInterface;
 use App\DTO\HitobitoEvent;
 use App\DTO\HitobitoEventDate;
-use App\Entity\User;
-use App\Service\Hitobito\AccessTokenProvider;
 use App\Service\Hitobito\ClientInterface;
 use App\Service\Hitobito\ClientProvider;
 use App\Service\Hitobito\Event;
 use App\Service\Hitobito\EventAccessChecker;
 use App\Service\Hitobito\HitobitoProvider;
-use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -25,9 +20,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class HitobitoEventProvider implements ProviderInterface {
     public function __construct(
-        private readonly Security $security,
-        private readonly RequestStack $requestStack,
-        private readonly AccessTokenProvider $accessTokenProvider,
         private readonly ClientProvider $clientProvider,
         private readonly EventAccessChecker $eventAccessChecker,
     ) {}
@@ -35,22 +27,20 @@ class HitobitoEventProvider implements ProviderInterface {
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): array|HitobitoEvent|null {
         $provider = HitobitoProvider::parse($uriVariables['provider']);
 
-        $user = $this->getAuthenticatedUser();
-        $authContext = $this->accessTokenProvider->getAccessToken($this->getRequest(), $provider, $user->getId());
-        $client = $this->clientProvider->getClient($provider, $authContext->getAccessToken());
+        $client = $this->clientProvider->getClientForCurrentUser($provider);
 
         if (isset($uriVariables['id'])) {
-            return $this->provideItem($provider, $client, $authContext->getUserId(), $uriVariables['id']);
+            return $this->provideItem($provider, $client, $uriVariables['id']);
         }
 
-        return $this->provideCollection($provider, $client, $authContext->getUserId());
+        return $this->provideCollection($provider, $client);
     }
 
     /**
      * @return HitobitoEvent[]
      */
-    private function provideCollection(HitobitoProvider $provider, ClientInterface $client, int $hitobitoUserId): array {
-        $participations = $client->getEventParticipations($hitobitoUserId);
+    private function provideCollection(HitobitoProvider $provider, ClientInterface $client): array {
+        $participations = $client->getEventParticipations();
 
         $events = [];
         foreach ($participations as $participation) {
@@ -64,8 +54,8 @@ class HitobitoEventProvider implements ProviderInterface {
         return $events;
     }
 
-    private function provideItem(HitobitoProvider $provider, ClientInterface $client, int $hitobitoUserId, string $eventId): HitobitoEvent {
-        $this->eventAccessChecker->checkAccess($provider, $client, $hitobitoUserId, $eventId);
+    private function provideItem(HitobitoProvider $provider, ClientInterface $client, string $eventId): HitobitoEvent {
+        $this->eventAccessChecker->checkAccess($provider, $client, $eventId);
 
         $event = $client->getEvent($eventId);
         if (null === $event) {
@@ -84,23 +74,5 @@ class HitobitoEventProvider implements ProviderInterface {
         );
 
         return $hitobitoEvent;
-    }
-
-    private function getAuthenticatedUser(): User {
-        $user = $this->security->getUser();
-        if (!$user instanceof User) {
-            throw new \LogicException('This operation requires an authenticated eCamp user');
-        }
-
-        return $user;
-    }
-
-    private function getRequest(): Request {
-        $request = $this->requestStack->getCurrentRequest();
-        if (null === $request) {
-            throw new \LogicException('No current request');
-        }
-
-        return $request;
     }
 }
