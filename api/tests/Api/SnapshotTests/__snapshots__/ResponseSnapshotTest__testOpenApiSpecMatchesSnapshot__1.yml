@@ -3917,6 +3917,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -4241,6 +4261,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -4425,6 +4465,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -4609,6 +4669,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Activity.Category_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries_Activity.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -4797,6 +4877,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Camp.Periods_Period.Days_Camp.CampCollaborations_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -4982,6 +5082,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_CampCollaboration.Camp_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -5166,6 +5286,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -5350,6 +5490,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Category.PreferredContentTypes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -5534,6 +5694,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Category.PreferredContentTypes_Category.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -5718,6 +5898,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Day.DayResponsibles'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -5902,6 +6102,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_Period.Camp_Period.Days'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -6086,6 +6306,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User-read_ScheduleEntry.Activity'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -6629,6 +6869,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -6813,6 +7073,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -6997,6 +7277,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Activity.Category_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries_Activity.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -7185,6 +7485,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Camp.Periods_Period.Days_Camp.CampCollaborations_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -7370,6 +7690,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_CampCollaboration.Camp_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -7554,6 +7894,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -7738,6 +8098,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Category.PreferredContentTypes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -7922,6 +8302,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Category.PreferredContentTypes_Category.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -8106,6 +8506,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Day.DayResponsibles'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -8290,6 +8710,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_Period.Camp_Period.Days'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -8474,6 +8914,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.html-read_ScheduleEntry.Activity'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -8783,6 +9243,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -8974,6 +9454,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -9165,6 +9665,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Activity.Category_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries_Activity.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -9352,6 +9872,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Camp.Periods_Period.Days_Camp.CampCollaborations_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -9544,6 +10084,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_CampCollaboration.Camp_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -9735,6 +10295,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_CampCollaboration.User'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -9925,6 +10505,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Category.PreferredContentTypes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -10115,6 +10715,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Category.PreferredContentTypes_Category.ContentNodes'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -10306,6 +10926,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Day.DayResponsibles'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -10501,6 +11141,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_Period.Camp_Period.Days'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -10692,6 +11352,26 @@ components:
             - string
         creator:
           $ref: '#/components/schemas/User.jsonld-read_ScheduleEntry.Activity'
+        hitobitoEventId:
+          description: 'The id of the corresponding event in Hitobito, if this camp was created from one.'
+          example: '1234'
+          maxLength: 255
+          readOnly: true
+          type:
+            - 'null'
+            - string
+        hitobitoProvider:
+          description: 'The Hitobito provider (such as MiData) this camp was created from, if any.'
+          enum:
+            - cevidb
+            - jubladb
+            - pbsmidata
+            - null
+          example: pbsmidata
+          readOnly: true
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -32394,6 +33074,208 @@ components:
       required:
         - _embedded
         - _links
+      type: object
+    HitobitoEvent:
+      properties:
+        dates:
+          items:
+            $ref: '#/components/schemas/HitobitoEventDate'
+          type: array
+        id:
+          example: '1234'
+          type: string
+        location:
+          type:
+            - 'null'
+            - string
+        motto:
+          type:
+            - 'null'
+            - string
+        name:
+          type: string
+        provider:
+          type: string
+      type: object
+    HitobitoEvent-read:
+      properties:
+        id:
+          example: '1234'
+          type: string
+        name:
+          type: string
+      type: object
+    HitobitoEvent-read_details:
+      properties:
+        dates:
+          items:
+            $ref: '#/components/schemas/HitobitoEventDate-read_details'
+          type: array
+        id:
+          example: '1234'
+          type: string
+        location:
+          type:
+            - 'null'
+            - string
+        motto:
+          type:
+            - 'null'
+            - string
+        name:
+          type: string
+      type: object
+    HitobitoEvent.html-read:
+      properties:
+        id:
+          example: '1234'
+          type: string
+        name:
+          type: string
+      type: object
+    HitobitoEvent.html-read_details:
+      properties:
+        dates:
+          items:
+            $ref: '#/components/schemas/HitobitoEventDate.html-read_details'
+          type: array
+        id:
+          example: '1234'
+          type: string
+        location:
+          type:
+            - 'null'
+            - string
+        motto:
+          type:
+            - 'null'
+            - string
+        name:
+          type: string
+      type: object
+    HitobitoEvent.jsonapi:
+      properties:
+        data:
+          properties:
+            attributes:
+              $ref: '#/components/schemas/HitobitoEvent'
+            id:
+              type: string
+            type:
+              type: string
+          required:
+            - id
+            - type
+          type: object
+    HitobitoEvent.jsonhal-read:
+      allOf:
+        - $ref: '#/components/schemas/HitobitoEvent-read'
+        -
+          properties:
+            _links:
+              properties:
+                self:
+                  properties: { href: { format: iri-reference, type: string } }
+                  type: object
+              type: object
+          type: object
+    HitobitoEvent.jsonhal-read_details:
+      allOf:
+        - $ref: '#/components/schemas/HitobitoEvent-read_details'
+        -
+          properties:
+            _links:
+              properties:
+                self:
+                  properties: { href: { format: iri-reference, type: string } }
+                  type: object
+              type: object
+          type: object
+    HitobitoEvent.jsonld-read:
+      allOf:
+        - $ref: '#/components/schemas/HydraItemBaseSchema'
+        -
+          properties:
+            id:
+              example: '1234'
+              type: string
+            name:
+              type: string
+          type: object
+    HitobitoEvent.jsonld-read_details:
+      allOf:
+        - $ref: '#/components/schemas/HydraItemBaseSchema'
+        -
+          properties:
+            dates:
+              items:
+                $ref: '#/components/schemas/HitobitoEventDate.jsonld-read_details'
+              type: array
+            id:
+              example: '1234'
+              type: string
+            location:
+              type:
+                - 'null'
+                - string
+            motto:
+              type:
+                - 'null'
+                - string
+            name:
+              type: string
+          type: object
+    HitobitoEventDate:
+      properties:
+        finishAt:
+          type:
+            - 'null'
+            - string
+        label:
+          type:
+            - 'null'
+            - string
+        startAt:
+          type: string
+      type: object
+    HitobitoEventDate-read_details:
+      properties:
+        finishAt:
+          type:
+            - 'null'
+            - string
+        label:
+          type:
+            - 'null'
+            - string
+        startAt:
+          type: string
+      type: object
+    HitobitoEventDate.html-read_details:
+      properties:
+        finishAt:
+          type:
+            - 'null'
+            - string
+        label:
+          type:
+            - 'null'
+            - string
+        startAt:
+          type: string
+      type: object
+    HitobitoEventDate.jsonld-read_details:
+      properties:
+        finishAt:
+          type:
+            - 'null'
+            - string
+        label:
+          type:
+            - 'null'
+            - string
+        startAt:
+          type: string
       type: object
     HydraCollectionBaseSchema:
       allOf:
@@ -59656,6 +60538,143 @@ paths:
       summary: 'Retrieves a Day resource.'
       tags:
         - Day
+  '/hitobito/{provider}/events':
+    get:
+      description: 'Get all accessible Hitobito events.'
+      operationId: api_hitobito_providerevents_get_collection
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEvent identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/HalCollectionBaseSchemaNoPagination' }
+                  - { properties: { _embedded: { additionalProperties: { items: { $ref: '#/components/schemas/HitobitoEvent.jsonhal-read' }, type: array } } }, type: object }
+                description: 'HitobitoEvent.jsonhal-read collection.'
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HitobitoEvent-read'
+                type: array
+            application/ld+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/HydraCollectionBaseSchemaNoPagination' }
+                  - { properties: { member: { items: { $ref: '#/components/schemas/HitobitoEvent.jsonld-read' }, type: array } }, required: [member], type: object }
+                description: 'HitobitoEvent.jsonld-read collection.'
+                type: object
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/JsonApiCollectionBaseSchemaNoPagination' }
+                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/HitobitoEvent' }, id: { type: string }, type: { type: string } }, required: [id, type], type: object }, type: array } }, type: object }
+                description: 'HitobitoEvent.jsonapi collection.'
+            text/html:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HitobitoEvent.html-read'
+                type: array
+          description: 'HitobitoEvent collection'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+      summary: 'Retrieves the collection of HitobitoEvent resources.'
+      tags:
+        - HitobitoEvent
+  '/hitobito/{provider}/events/{id}':
+    get:
+      description: 'Get a Hitobito event by its id.'
+      operationId: api_hitobito_providerevents_id_get
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEvent identifier'
+          explode: false
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          style: simple
+        -
+          deprecated: false
+          description: 'HitobitoEvent identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonhal-read_details'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent-read_details'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonld-read_details'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonapi'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.html-read_details'
+          description: 'HitobitoEvent resource'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'Not found'
+          links: []
+      summary: 'Retrieves a HitobitoEvent resource.'
+      tags:
+        - HitobitoEvent
   '/invitations/{inviteKey}/accept':
     patch:
       description: 'Use myInviteKey2 to accept an invitation in dev environment.'
@@ -62865,6 +63884,8 @@ tags:
     name: ChecklistNode
   - description: "Resource 'ColumnLayout' operations."
     name: ColumnLayout
+  - description: "Resource 'HitobitoEvent' operations."
+    name: HitobitoEvent
   - description: "Resource 'MaterialNode' operations."
     name: MaterialNode
   - description: "Resource 'MultiSelect' operations."
