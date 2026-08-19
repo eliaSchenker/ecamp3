@@ -49,6 +49,15 @@ class EventAccessChecker {
     ];
 
     /**
+     * Returns the role types which allow a Hitobito user to create a corresponding camp in eCamp.
+     *
+     * @return string[]
+     */
+    public function getLeaderRoleTypes(HitobitoProvider $provider): array {
+        return self::LEADER_ROLE_TYPES[$provider->value] ?? [];
+    }
+
+    /**
      * Check whether a user has access to the specified event
      * Throws corresponding exceptions if access is not granted.
      */
@@ -81,6 +90,6 @@ class EventAccessChecker {
             return false;
         }
 
-        return [] !== array_intersect($participation->roleTypes, self::LEADER_ROLE_TYPES[$provider->value] ?? []);
+        return [] !== array_intersect($participation->roleTypes, $this->getLeaderRoleTypes($provider));
     }
 }

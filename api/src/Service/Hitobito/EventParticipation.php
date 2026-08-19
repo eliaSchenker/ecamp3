@@ -12,7 +12,6 @@ class EventParticipation {
         public readonly string $id,
         public readonly bool $active,
         public readonly string $eventId,
-        public readonly string $eventName,
         public readonly array $roleTypes,
     ) {}
 }

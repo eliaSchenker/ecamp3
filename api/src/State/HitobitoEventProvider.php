@@ -40,18 +40,12 @@ class HitobitoEventProvider implements ProviderInterface {
      * @return HitobitoEvent[]
      */
     private function provideCollection(HitobitoProvider $provider, ClientInterface $client): array {
-        $participations = $client->getEventParticipations();
+        $events = $client->getUpcomingEvents($this->eventAccessChecker->getLeaderRoleTypes($provider));
 
-        $events = [];
-        foreach ($participations as $participation) {
-            if (!$this->eventAccessChecker->isActiveLeaderParticipation($provider, $participation)) {
-                continue;
-            }
-
-            $events[] = new HitobitoEvent($provider->value, $participation->eventId, $participation->eventName);
-        }
-
-        return $events;
+        return array_map(
+            fn (Event $event) => $this->toHitobitoEvent($provider, $event),
+            $events
+        );
     }
 
     private function provideItem(HitobitoProvider $provider, ClientInterface $client, string $eventId): HitobitoEvent {
