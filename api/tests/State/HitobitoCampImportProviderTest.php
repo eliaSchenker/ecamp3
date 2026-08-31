@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * @internal
  */
 class HitobitoCampImportProviderTest extends TestCase {
-    private const array URI_VARIABLES = ['provider' => 'pbsmidata', 'id' => '123'];
+    private const array URI_VARIABLES = ['provider' => 'pbsmidata', 'eventId' => '123'];
 
     private ClientInterface|Stub $client;
     private HitobitoCampImportProvider $provider;
