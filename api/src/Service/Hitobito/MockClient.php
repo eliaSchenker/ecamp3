@@ -34,6 +34,17 @@ class MockClient implements ClientInterface {
         ));
     }
 
+    public function getEventParticipants(string $eventId, array $roleTypes): array {
+        if (self::EVENT_ID_LEADER !== $eventId || [] === $roleTypes) {
+            return [];
+        }
+
+        return [
+            new EventParticipant('Ellen', 'Bloch', 'Quo', 'bloch.ellen@hitobito.example.com'),
+            new EventParticipant('Lee', 'Frauen', 'Maiores', 'frauen_lee@hitobito.example.com'),
+        ];
+    }
+
     public function getEvent(string $eventId): ?Event {
         return match ($eventId) {
             self::EVENT_ID_LEADER => new Event(
