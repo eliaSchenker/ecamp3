@@ -9,11 +9,8 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Link;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
-use ApiPlatform\OpenApi\Model\Parameter;
 use App\Doctrine\Filter\CampCollaboratorFilter;
 use App\InputFilter;
 use App\Repository\CampRepository;
@@ -22,7 +19,6 @@ use App\Service\Hitobito\HitobitoProvider;
 use App\State\CampCreateProcessor;
 use App\State\CampRemoveProcessor;
 use App\State\CampUpdateProcessor;
-use App\State\HitobitoCampImportProvider;
 use App\Util\EntityMap;
 use App\Validator\AssertContainsAtLeastOneManager;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -61,40 +57,6 @@ use Symfony\Component\Validator\Constraints as Assert;
             denormalizationContext: ['groups' => ['write', 'create']],
             security: 'is_authenticated()',
             validationContext: ['groups' => ['Default', 'create', 'Camp:create']],
-            processor: CampCreateProcessor::class,
-        ),
-        new Post(
-            uriTemplate: '/hitobito/{provider}/events/{id}/import{._format}',
-            uriVariables: [
-                'provider' => new Link(parameterName: 'provider', identifiers: ['provider']),
-                'id' => new Link(parameterName: 'id', identifiers: ['id']),
-            ],
-            openapi: new OpenApiOperation(
-                description: 'Create a camp from a Hitobito event.',
-                parameters: [
-                    new Parameter(
-                        name: 'provider',
-                        in: 'path',
-                        description: 'The Hitobito provider the event belongs to.',
-                        required: true,
-                        schema: ['type' => 'string'],
-                        example: HitobitoProvider::PBSMIDATA->value,
-                    ),
-                    new Parameter(
-                        name: 'id',
-                        in: 'path',
-                        description: 'The id of the Hitobito event to import.',
-                        required: true,
-                        schema: ['type' => 'string'],
-                        example: '1234',
-                    ),
-                ],
-            ),
-            normalizationContext: self::ITEM_NORMALIZATION_CONTEXT,
-            denormalizationContext: ['groups' => ['import']],
-            security: 'is_authenticated()',
-            validationContext: ['groups' => ['Default', 'create', 'Camp:create']],
-            provider: HitobitoCampImportProvider::class,
             processor: CampCreateProcessor::class,
         ),
     ],
@@ -234,7 +196,7 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
      * Only the ID will be persisted.
      */
     #[ApiProperty(readable: false, example: '/camps/1a2b3c4d')]
-    #[Groups(['create', 'import'])]
+    #[Groups(['create'])]
     public ?Camp $campPrototype = null;
 
     /**
