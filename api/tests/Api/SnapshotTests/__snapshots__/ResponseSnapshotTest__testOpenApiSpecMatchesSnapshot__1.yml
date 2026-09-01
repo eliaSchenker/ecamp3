@@ -6,7 +6,6 @@ components:
   responses: []
   schemas:
     Activity:
-      description: 'A piece of programme that will be carried out once or multiple times in a camp.'
       properties:
         activityResponsibles:
           items:
@@ -30,6 +29,10 @@ components:
             $ref: '#/components/schemas/ContentNode'
           readOnly: true
           type: array
+        copyActivitySource:
+          anyOf:
+            - $ref: '#/components/schemas/Activity'
+            - type: 'null'
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -97,7 +100,6 @@ components:
           type: string
       type: object
     Activity-read:
-      description: 'A piece of programme that will be carried out once or multiple times in a camp.'
       properties:
         activityResponsibles:
           items:
@@ -807,7 +809,6 @@ components:
           type: string
       type: object
     Activity.html-read:
-      description: 'A piece of programme that will be carried out once or multiple times in a camp.'
       properties:
         activityResponsibles:
           items:
@@ -1450,6 +1451,8 @@ components:
                   properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } }
                 comments:
                   properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } }
+                copyActivitySource:
+                  properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } }
                 progressLabel:
                   properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } }
                 rootContentNode:
@@ -1469,6 +1472,7 @@ components:
             url: 'https://jsonapi.org/format/#fetching-includes'
           items:
             anyOf:
+              - $ref: '#/components/schemas/Activity.jsonapi'
               - $ref: '#/components/schemas/ActivityProgressLabel.jsonapi'
               - $ref: '#/components/schemas/ActivityResponsible.jsonapi'
               - $ref: '#/components/schemas/Camp.jsonapi'
@@ -1490,7 +1494,6 @@ components:
                   type: object
               type: object
           type: object
-      description: 'A piece of programme that will be carried out once or multiple times in a camp.'
     Activity.jsonhal-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries:
       allOf:
         - $ref: '#/components/schemas/Activity-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries'
@@ -1534,6 +1537,30 @@ components:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
         -
+          properties:
+            camp:
+              $ref: '#/components/schemas/Camp.jsonld-read'
+            category:
+              $ref: '#/components/schemas/Category.jsonld-read'
+            location:
+              default: ''
+              description: "The physical location where this activity's programme will be carried out."
+              example: Spielwiese
+              maxLength: 64
+              type: string
+            progressLabel:
+              anyOf:
+                - $ref: '#/components/schemas/ActivityProgressLabel.jsonld-read'
+                - type: 'null'
+            scheduleEntries:
+              items:
+                $ref: '#/components/schemas/ScheduleEntry.jsonld-read'
+              type: array
+            title:
+              description: 'The title of this activity that is shown in the picasso.'
+              example: Sportolympiade
+              maxLength: 32
+              type: string
           required:
             - activityResponsibles
             - category
@@ -1549,10 +1576,6 @@ components:
             $ref: '#/components/schemas/ActivityResponsible.jsonld-read'
           readOnly: true
           type: array
-        camp:
-          $ref: '#/components/schemas/Camp.jsonld-read'
-        category:
-          $ref: '#/components/schemas/Category.jsonld-read'
         comments:
           items:
             $ref: '#/components/schemas/Comment.jsonld-read'
@@ -1569,27 +1592,8 @@ components:
           maxLength: 16
           readOnly: true
           type: string
-        location:
-          default: ''
-          description: "The physical location where this activity's programme will be carried out."
-          example: Spielwiese
-          maxLength: 64
-          type: string
-        progressLabel:
-          anyOf:
-            - $ref: '#/components/schemas/ActivityProgressLabel.jsonld-read'
-            - type: 'null'
         rootContentNode:
           $ref: '#/components/schemas/ColumnLayout.jsonld-read'
-        scheduleEntries:
-          items:
-            $ref: '#/components/schemas/ScheduleEntry.jsonld-read'
-          type: array
-        title:
-          description: 'The title of this activity that is shown in the picasso.'
-          example: Sportolympiade
-          maxLength: 32
-          type: string
     Activity.jsonld-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
@@ -9161,15 +9165,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
         -
-          properties:
-            campCollaborations:
-              items:
-                $ref: '#/components/schemas/CampCollaboration.jsonld-read'
-              type: array
-            periods:
-              items:
-                $ref: '#/components/schemas/Period.jsonld-read'
-              type: array
           required:
             - activities
             - campCollaborations
@@ -9218,6 +9213,10 @@ components:
           type:
             - 'null'
             - string
+        campCollaborations:
+          items:
+            $ref: '#/components/schemas/CampCollaboration.jsonld-read'
+          type: array
         categories:
           items:
             $ref: '#/components/schemas/Category.jsonld-read'
@@ -9315,6 +9314,10 @@ components:
           type:
             - 'null'
             - string
+        periods:
+          items:
+            $ref: '#/components/schemas/Period.jsonld-read'
+          type: array
         printYSLogoOnPicasso:
           default: false
           description: 'Whether the Y+S logo should be printed on the picasso of this camp.'
@@ -13275,6 +13278,29 @@ components:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
         -
           properties:
+            abbreviation:
+              description: 'The abbreviation in the avatar.'
+              example: AB
+              maxLength: 2
+              type:
+                - 'null'
+                - string
+            camp:
+              $ref: '#/components/schemas/Camp.jsonld-read'
+            color:
+              description: 'The color of the avatar as a hex color string.'
+              example: '#4DBB52'
+              maxLength: 8
+              pattern: '^(#[0-9a-zA-Z]{6})$'
+              type:
+                - 'null'
+                - string
+            id:
+              description: 'An internal, unique, randomly generated identifier of this entity.'
+              example: 1a2b3c4d
+              maxLength: 16
+              readOnly: true
+              type: string
             inviteEmail:
               description: |-
                 The receiver email address of the invitation email, in case the collaboration does not yet have
@@ -13288,6 +13314,27 @@ components:
               type:
                 - 'null'
                 - string
+            role:
+              description: |-
+                The role that this person has in the camp. Depending on the role, the collaborator might have
+                different access rights. There must always be at least one manager in a camp.
+              enum:
+                - guest
+                - manager
+                - member
+              example: member
+              maxLength: 16
+              type: string
+            status:
+              default: invited
+              description: 'Indicates whether the collaborator is still invited, has left the camp, or is participating normally.'
+              enum:
+                - established
+                - inactive
+                - invited
+              example: inactive
+              maxLength: 16
+              type: string
             user:
               anyOf:
                 - $ref: '#/components/schemas/User.jsonld-read'
@@ -13298,51 +13345,6 @@ components:
             - status
           type: object
       description: 'A user participating in some way in the planning or realization of a camp.'
-      properties:
-        abbreviation:
-          description: 'The abbreviation in the avatar.'
-          example: AB
-          maxLength: 2
-          type:
-            - 'null'
-            - string
-        camp:
-          $ref: '#/components/schemas/Camp.jsonld-read'
-        color:
-          description: 'The color of the avatar as a hex color string.'
-          example: '#4DBB52'
-          maxLength: 8
-          pattern: '^(#[0-9a-zA-Z]{6})$'
-          type:
-            - 'null'
-            - string
-        id:
-          description: 'An internal, unique, randomly generated identifier of this entity.'
-          example: 1a2b3c4d
-          maxLength: 16
-          readOnly: true
-          type: string
-        role:
-          description: |-
-            The role that this person has in the camp. Depending on the role, the collaborator might have
-            different access rights. There must always be at least one manager in a camp.
-          enum:
-            - guest
-            - manager
-            - member
-          example: member
-          maxLength: 16
-          type: string
-        status:
-          default: invited
-          description: 'Indicates whether the collaborator is still invited, has left the camp, or is participating normally.'
-          enum:
-            - established
-            - inactive
-            - invited
-          example: inactive
-          maxLength: 16
-          type: string
     CampCollaboration.jsonld-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
@@ -33211,6 +33213,102 @@ components:
             name:
               type: string
           type: object
+    HitobitoEventCamp:
+      description: |-
+        The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+        It contains only the event id, as well as a link to the camp, which must be fetched separately.
+      properties:
+        camp:
+          $ref: '#/components/schemas/Camp'
+        id:
+          description: 'The id of the Hitobito event this camp was created from.'
+          example: '1234'
+          type: string
+        provider:
+          type: string
+      type: object
+    HitobitoEventCamp-read:
+      description: |-
+        The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+        It contains only the event id, as well as a link to the camp, which must be fetched separately.
+      properties:
+        camp:
+          $ref: '#/components/schemas/Camp-read'
+        id:
+          description: 'The id of the Hitobito event this camp was created from.'
+          example: '1234'
+          type: string
+      type: object
+    HitobitoEventCamp.html-read:
+      description: |-
+        The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+        It contains only the event id, as well as a link to the camp, which must be fetched separately.
+      properties:
+        camp:
+          $ref: '#/components/schemas/Camp.html-read'
+        id:
+          description: 'The id of the Hitobito event this camp was created from.'
+          example: '1234'
+          type: string
+      type: object
+    HitobitoEventCamp.jsonapi:
+      properties:
+        data:
+          properties:
+            attributes:
+              $ref: '#/components/schemas/HitobitoEventCamp'
+            id:
+              type: string
+            relationships:
+              properties:
+                camp:
+                  properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } }
+              type: object
+            type:
+              type: string
+          required:
+            - id
+            - type
+          type: object
+        included:
+          description: 'Related resources requested via the "include" query parameter.'
+          externalDocs:
+            url: 'https://jsonapi.org/format/#fetching-includes'
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/Camp.jsonapi'
+          readOnly: true
+          type: array
+    HitobitoEventCamp.jsonhal-read:
+      allOf:
+        - $ref: '#/components/schemas/HitobitoEventCamp-read'
+        -
+          properties:
+            _links:
+              properties:
+                self:
+                  properties: { href: { format: iri-reference, type: string } }
+                  type: object
+              type: object
+          type: object
+      description: |-
+        The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+        It contains only the event id, as well as a link to the camp, which must be fetched separately.
+    HitobitoEventCamp.jsonld-read:
+      allOf:
+        - $ref: '#/components/schemas/HydraItemBaseSchema'
+        -
+          properties:
+            camp:
+              $ref: '#/components/schemas/Camp.jsonld-read'
+            id:
+              description: 'The id of the Hitobito event this camp was created from.'
+              example: '1234'
+              type: string
+          type: object
+      description: |-
+        The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+        It contains only the event id, as well as a link to the camp, which must be fetched separately.
     HitobitoEventDate:
       properties:
         finishAt:
@@ -34926,14 +35024,6 @@ components:
           properties:
             camp:
               $ref: '#/components/schemas/Camp.jsonld-read'
-            materialList:
-              anyOf:
-                - $ref: '#/components/schemas/MaterialList.jsonld-read'
-                - type: 'null'
-            period:
-              anyOf:
-                - $ref: '#/components/schemas/Period.jsonld-read'
-                - type: 'null'
           required:
             - article
             - done
@@ -34957,9 +35047,17 @@ components:
           maxLength: 16
           readOnly: true
           type: string
+        materialList:
+          anyOf:
+            - $ref: '#/components/schemas/MaterialList.jsonld-read'
+            - type: 'null'
         materialNode:
           anyOf:
             - $ref: '#/components/schemas/MaterialNode.jsonld-read'
+            - type: 'null'
+        period:
+          anyOf:
+            - $ref: '#/components/schemas/Period.jsonld-read'
             - type: 'null'
         quantity:
           description: 'The number of items or the amount in the unit of items that are required.'
@@ -36485,6 +36583,36 @@ components:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
         -
+          properties:
+            camp:
+              $ref: '#/components/schemas/Camp.jsonld-read'
+            campCollaboration:
+              anyOf:
+                - $ref: '#/components/schemas/CampCollaboration.jsonld-read'
+                - type: 'null'
+              readOnly: true
+            id:
+              description: 'An internal, unique, randomly generated identifier of this entity.'
+              example: 1a2b3c4d
+              maxLength: 16
+              readOnly: true
+              type: string
+            itemCount:
+              example: 3
+              readOnly: true
+              type: integer
+            materialItems:
+              items:
+                $ref: '#/components/schemas/MaterialItem.jsonld-read'
+              readOnly: true
+              type: array
+            name:
+              description: 'The human readable name of the material list.'
+              example: Lebensmittel
+              maxLength: 32
+              type:
+                - 'null'
+                - string
           required:
             - camp
             - materialItems
@@ -36493,36 +36621,6 @@ components:
       description: |-
         A list of material items that someone needs to bring to the camp. A material list
         is automatically created for each person collaborating on the camp.
-      properties:
-        camp:
-          $ref: '#/components/schemas/Camp.jsonld-read'
-        campCollaboration:
-          anyOf:
-            - $ref: '#/components/schemas/CampCollaboration.jsonld-read'
-            - type: 'null'
-          readOnly: true
-        id:
-          description: 'An internal, unique, randomly generated identifier of this entity.'
-          example: 1a2b3c4d
-          maxLength: 16
-          readOnly: true
-          type: string
-        itemCount:
-          example: 3
-          readOnly: true
-          type: integer
-        materialItems:
-          items:
-            $ref: '#/components/schemas/MaterialItem.jsonld-read'
-          readOnly: true
-          type: array
-        name:
-          description: 'The human readable name of the material list.'
-          example: Lebensmittel
-          maxLength: 32
-          type:
-            - 'null'
-            - string
     MaterialList.jsonld-read_Activity.ActivityProgressLabel_Activity.ActivityResponsibles_Activity.ScheduleEntries:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
@@ -49088,6 +49186,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/HydraItemBaseSchema'
         -
+          properties:
+            period:
+              $ref: '#/components/schemas/Period.jsonld-read'
           required:
             - activity
             - end
@@ -49140,8 +49241,6 @@ components:
           example: 1.b
           readOnly: true
           type: string
-        period:
-          $ref: '#/components/schemas/Period.jsonld-read'
         scheduleEntryNumber:
           description: |-
             The cardinal number of this schedule entry, when chronologically ordering all
@@ -52516,7 +52615,7 @@ paths:
               schema:
                 allOf:
                   - { $ref: '#/components/schemas/JsonApiCollectionBaseSchemaNoPagination' }
-                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/Activity' }, id: { type: string }, relationships: { properties: { activityResponsibles: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, camp: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, category: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, comments: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, progressLabel: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, rootContentNode: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, scheduleEntries: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } } }, type: object }, type: { type: string } }, required: [id, type], type: object }, type: array }, included: { description: 'Related resources requested via the "include" query parameter.', externalDocs: { url: 'https://jsonapi.org/format/#fetching-includes' }, items: { anyOf: [{ $ref: '#/components/schemas/ActivityProgressLabel.jsonapi' }, { $ref: '#/components/schemas/ActivityResponsible.jsonapi' }, { $ref: '#/components/schemas/Camp.jsonapi' }, { $ref: '#/components/schemas/Category.jsonapi' }, { $ref: '#/components/schemas/ColumnLayout.jsonapi' }, { $ref: '#/components/schemas/Comment.jsonapi' }, { $ref: '#/components/schemas/ScheduleEntry.jsonapi' }] }, readOnly: true, type: array } }, type: object }
+                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/Activity' }, id: { type: string }, relationships: { properties: { activityResponsibles: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, camp: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, category: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, comments: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, copyActivitySource: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, progressLabel: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, rootContentNode: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, scheduleEntries: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } } }, type: object }, type: { type: string } }, required: [id, type], type: object }, type: array }, included: { description: 'Related resources requested via the "include" query parameter.', externalDocs: { url: 'https://jsonapi.org/format/#fetching-includes' }, items: { anyOf: [{ $ref: '#/components/schemas/Activity.jsonapi' }, { $ref: '#/components/schemas/ActivityProgressLabel.jsonapi' }, { $ref: '#/components/schemas/ActivityResponsible.jsonapi' }, { $ref: '#/components/schemas/Camp.jsonapi' }, { $ref: '#/components/schemas/Category.jsonapi' }, { $ref: '#/components/schemas/ColumnLayout.jsonapi' }, { $ref: '#/components/schemas/Comment.jsonapi' }, { $ref: '#/components/schemas/ScheduleEntry.jsonapi' }] }, readOnly: true, type: array } }, type: object }
                 description: 'Activity.jsonapi collection.'
             text/html:
               schema:
@@ -54695,7 +54794,7 @@ paths:
               schema:
                 allOf:
                   - { $ref: '#/components/schemas/JsonApiCollectionBaseSchemaNoPagination' }
-                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/Activity' }, id: { type: string }, relationships: { properties: { activityResponsibles: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, camp: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, category: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, comments: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, progressLabel: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, rootContentNode: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, scheduleEntries: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } } }, type: object }, type: { type: string } }, required: [id, type], type: object }, type: array }, included: { description: 'Related resources requested via the "include" query parameter.', externalDocs: { url: 'https://jsonapi.org/format/#fetching-includes' }, items: { anyOf: [{ $ref: '#/components/schemas/ActivityProgressLabel.jsonapi' }, { $ref: '#/components/schemas/ActivityResponsible.jsonapi' }, { $ref: '#/components/schemas/Camp.jsonapi' }, { $ref: '#/components/schemas/Category.jsonapi' }, { $ref: '#/components/schemas/ColumnLayout.jsonapi' }, { $ref: '#/components/schemas/Comment.jsonapi' }, { $ref: '#/components/schemas/ScheduleEntry.jsonapi' }] }, readOnly: true, type: array } }, type: object }
+                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/Activity' }, id: { type: string }, relationships: { properties: { activityResponsibles: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, camp: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, category: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, comments: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } }, copyActivitySource: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, progressLabel: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, rootContentNode: { properties: { data: { oneOf: [{ properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, { type: 'null' }] } } }, scheduleEntries: { properties: { data: { items: { properties: { id: { format: iri-reference, type: string }, type: { type: string } }, type: object }, type: array } } } }, type: object }, type: { type: string } }, required: [id, type], type: object }, type: array }, included: { description: 'Related resources requested via the "include" query parameter.', externalDocs: { url: 'https://jsonapi.org/format/#fetching-includes' }, items: { anyOf: [{ $ref: '#/components/schemas/Activity.jsonapi' }, { $ref: '#/components/schemas/ActivityProgressLabel.jsonapi' }, { $ref: '#/components/schemas/ActivityResponsible.jsonapi' }, { $ref: '#/components/schemas/Camp.jsonapi' }, { $ref: '#/components/schemas/Category.jsonapi' }, { $ref: '#/components/schemas/ColumnLayout.jsonapi' }, { $ref: '#/components/schemas/Comment.jsonapi' }, { $ref: '#/components/schemas/ScheduleEntry.jsonapi' }] }, readOnly: true, type: array } }, type: object }
                 description: 'Activity.jsonapi collection.'
             text/html:
               schema:
@@ -60661,6 +60760,79 @@ paths:
       summary: 'Retrieves a HitobitoEvent resource.'
       tags:
         - HitobitoEvent
+  '/hitobito/{provider}/events/{id}/camp':
+    get:
+      description: 'Retrieve the Camp which was created from the specified Hitobito event.'
+      operationId: api_hitobito_providerevents_idcamp_get
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEventCamp identifier'
+          explode: false
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          style: simple
+        -
+          deprecated: false
+          description: 'HitobitoEventCamp identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonhal-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonapi'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.html-read'
+          description: 'HitobitoEventCamp resource'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'Not found'
+          links: []
+      summary: 'Retrieves a HitobitoEventCamp resource.'
+      tags:
+        - HitobitoEventCamp
   '/invitations/{inviteKey}/accept':
     patch:
       description: 'Use myInviteKey2 to accept an invitation in dev environment.'
@@ -63886,6 +64058,10 @@ tags:
     name: Storyboard
   - description: "Resource 'UserActivation' operations."
     name: UserActivation
+  - description: |-
+      The HitobitoEventCamp entity allows retrieval of the camp corresponding to a specific Hitobito event (deep-link).
+      It contains only the event id, as well as a link to the camp, which must be fetched separately.
+    name: HitobitoEventCamp
   - description: |-
       The main entity that eCamp is designed to manage. Contains programme which may be
       distributed across multiple time periods.
