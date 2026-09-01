@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { slugify } from '@/plugins/slugify.js'
 import { isAdmin, isLoggedIn } from '@/plugins/auth'
+import { isValidProvider } from '@/plugins/hitobito'
 import { apiStore } from '@/plugins/store'
 import { campShortTitle } from '@/common/helpers/campShortTitle'
 import { getEnv } from '@/environment.js'
@@ -217,6 +218,21 @@ const router = createRouter({
         default: () => import('./views/CampCreate.vue'),
       },
       beforeEnter: requireAuth,
+    },
+    {
+      path: '/camps/hitobito/:provider/import',
+      name: 'camps/import',
+      components: {
+        navigation: NavigationDefault,
+        default: () => import('./views/CampImport.vue'),
+      },
+      props: {
+        default: (route) => ({
+          provider: route.params.provider,
+          eventId: route.query.eventId ?? null,
+        }),
+      },
+      beforeEnter: all([requireAuth, requireHitobitoProvider]),
     },
     {
       path: '/camps/invitation/rejected',
@@ -598,6 +614,18 @@ function requireAuth(to, from, next) {
 
 function requireAdmin(to, from, next) {
   if (isAdmin()) {
+    next()
+  } else {
+    next({
+      name: 'PageNotFound',
+      params: [to.fullPath, ''],
+      replace: true,
+    })
+  }
+}
+
+function requireHitobitoProvider(to, from, next) {
+  if (isValidProvider(to.params.provider)) {
     next()
   } else {
     next({

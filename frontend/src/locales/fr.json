@@ -233,6 +233,41 @@
         "submitTooltipPrototype": "Tu dois encore choisir si tu veux utiliser un modèle de champ et lequel."
       }
     },
+    "campImport": {
+      "campImport": {
+        "steps": {
+          "event": "Camp",
+          "template": "Modèle"
+        }
+      },
+      "campImportStep1": {
+        "event": "Camp",
+        "noEvents": "Aucun camp trouvé",
+        "search": "Rechercher un camp",
+        "submitTooltip": "Sélectionne un camp."
+      },
+      "errors": {
+        "alreadyExists": "Un camp eCamp existe déjà pour ce camp {provider}.",
+        "generic": "Les camps n'ont pas pu être chargés. Réessaie plus tard.",
+        "noAccess": "Tu n'as pas accès à ce camp.",
+        "notFound": "Ce camp n'a pas été trouvé."
+      },
+      "hitobitoEventSummary": {
+        "field": "Champ",
+        "fields": {
+          "address": "Adresse",
+          "end": "Fin",
+          "motto": "Thème",
+          "start": "Début",
+          "title": "Titre"
+        },
+        "period": "Période {number}",
+        "value": "Valeur"
+      },
+      "providers": {
+        "pbsmidata": "MiData"
+      }
+    },
     "category": {
       "categoryTemplate": {
         "contents": "Contenus",
@@ -869,8 +904,12 @@
     "campCreate": {
       "title": "Créer un camp"
     },
+    "campImport": {
+      "title": "Importer un camp depuis {provider}"
+    },
     "camps": {
       "create": "Créer un camp",
+      "import": "Importer un camp",
       "pastCamps": "Anciens camps",
       "prototypeCamps": "Prototypes",
       "title": "Mes camps"

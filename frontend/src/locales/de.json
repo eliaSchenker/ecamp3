@@ -233,6 +233,41 @@
         "submitTooltipPrototype": "Du musst noch auswählen, ob und welche Lagervorlage du verwenden möchtest."
       }
     },
+    "campImport": {
+      "campImport": {
+        "steps": {
+          "event": "Lager",
+          "template": "Vorlage"
+        }
+      },
+      "campImportStep1": {
+        "event": "Lager",
+        "noEvents": "Kein Lager gefunden",
+        "search": "Lager suchen",
+        "submitTooltip": "Bitte wähle ein Lager aus."
+      },
+      "errors": {
+        "alreadyExists": "Für dieses {provider}-Lager existiert bereits ein Lager im eCamp.",
+        "generic": "Die Lager konnten nicht geladen werden. Bitte versuche es später erneut.",
+        "noAccess": "Du hast keinen Zugriff auf dieses Lager.",
+        "notFound": "Dieses Lager wurde nicht gefunden."
+      },
+      "hitobitoEventSummary": {
+        "field": "Feld",
+        "fields": {
+          "address": "Adresse",
+          "end": "Ende",
+          "motto": "Motto",
+          "start": "Start",
+          "title": "Titel"
+        },
+        "period": "Lagerabschnitt {number}",
+        "value": "Wert"
+      },
+      "providers": {
+        "pbsmidata": "MiData"
+      }
+    },
     "category": {
       "categoryTemplate": {
         "contents": "Inhalte",
@@ -878,8 +913,12 @@
     "campCreate": {
       "title": "Lager erstellen"
     },
+    "campImport": {
+      "title": "Lager von {provider} importieren"
+    },
     "camps": {
       "create": "Lager erstellen",
+      "import": "Lager importieren",
       "pastCamps": "Alte Lager",
       "prototypeCamps": "Vorlagen",
       "title": "Meine Lager"

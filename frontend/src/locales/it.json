@@ -194,6 +194,41 @@
         "submitTooltipPrototype": "È ancora necessario selezionare se e quale modello di campo si desidera utilizzare."
       }
     },
+    "campImport": {
+      "campImport": {
+        "steps": {
+          "event": "Campo",
+          "template": "Modello"
+        }
+      },
+      "campImportStep1": {
+        "event": "Campo",
+        "noEvents": "Nessun campo trovato",
+        "search": "Cercare un campo",
+        "submitTooltip": "Selezionare un campo."
+      },
+      "errors": {
+        "alreadyExists": "Esiste già un campo eCamp per questo campo {provider}.",
+        "generic": "Non è stato possibile caricare i campi. Riprovare più tardi.",
+        "noAccess": "Non hai accesso a questo campo.",
+        "notFound": "Questo campo non è stato trovato."
+      },
+      "hitobitoEventSummary": {
+        "field": "Campo",
+        "fields": {
+          "address": "Indirizzo",
+          "end": "Fine",
+          "motto": "Tema",
+          "start": "Inizio",
+          "title": "Titolo"
+        },
+        "period": "Periodo {number}",
+        "value": "Valore"
+      },
+      "providers": {
+        "pbsmidata": "MiData"
+      }
+    },
     "category": {
       "categoryTemplate": {
         "contents": "Contenuti",
@@ -726,8 +761,12 @@
     "campCreate": {
       "title": "Creare il campo"
     },
+    "campImport": {
+      "title": "Importare un campo da {provider}"
+    },
     "camps": {
       "create": "Creare il campo",
+      "import": "Importare un campo",
       "pastCamps": "Campi passati",
       "prototypeCamps": "Prototipi",
       "title": "I miei campi"

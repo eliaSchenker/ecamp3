@@ -233,6 +233,41 @@
         "submitTooltipPrototype": "You need to choose if and which template you want."
       }
     },
+    "campImport": {
+      "campImport": {
+        "steps": {
+          "event": "Camp",
+          "template": "Template"
+        }
+      },
+      "campImportStep1": {
+        "event": "Camp",
+        "noEvents": "No camp found",
+        "search": "Search camp",
+        "submitTooltip": "Please select a camp."
+      },
+      "errors": {
+        "alreadyExists": "An eCamp camp already exists for this {provider} camp.",
+        "generic": "The camps could not be loaded. Please try again later.",
+        "noAccess": "You do not have access to this camp.",
+        "notFound": "This camp could not be found."
+      },
+      "hitobitoEventSummary": {
+        "field": "Field",
+        "fields": {
+          "address": "Address",
+          "end": "End",
+          "motto": "Motto",
+          "start": "Start",
+          "title": "Title"
+        },
+        "period": "Period {number}",
+        "value": "Value"
+      },
+      "providers": {
+        "pbsmidata": "MiData"
+      }
+    },
     "category": {
       "categoryTemplate": {
         "contents": "Contents",
@@ -878,8 +913,12 @@
     "campCreate": {
       "title": "Create a Camp"
     },
+    "campImport": {
+      "title": "Import camp from {provider}"
+    },
     "camps": {
       "create": "Create a camp",
+      "import": "Import camp",
       "pastCamps": "Past camps",
       "prototypeCamps": "Prototypes",
       "title": "My Camps"
