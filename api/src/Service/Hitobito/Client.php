@@ -74,7 +74,6 @@ class Client implements ClientInterface {
     public function getEventParticipations(string $eventId): array {
         $response = $this->httpClient->request('GET', 'event_participations', [
             'query' => [
-                // include role entities
                 'include' => 'roles',
                 'filter' => [
                     'participant_id' => ['eq' => $this->hitobitoUserId],
@@ -157,12 +156,10 @@ class Client implements ClientInterface {
                 'query' => ['include' => 'dates'],
             ])->toArray();
         } catch (ClientExceptionInterface $e) {
-            // Explicitly handle 404
             if (404 === $e->getResponse()->getStatusCode()) {
                 return null;
             }
 
-            // Re-throw any unexpected errors
             throw $e;
         }
 
