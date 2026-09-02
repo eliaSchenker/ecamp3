@@ -71,7 +71,7 @@ class HitobitoEventProvider implements ProviderInterface {
     /**
      * @param string[] $eventIds
      *
-     * @return string[]
+     * @return array<string, true>
      */
     private function findImportedEventIds(HitobitoProvider $provider, array $eventIds): array {
         $camps = $this->campRepository->findBy([
