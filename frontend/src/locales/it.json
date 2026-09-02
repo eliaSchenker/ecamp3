@@ -762,6 +762,14 @@
     "campCreate": {
       "title": "Creare il campo"
     },
+    "campHitobitoDeepLink": {
+      "errors": {
+        "campForbidden": "Questo magazzino è già stato importato, ma non hai accesso. Ti preghiamo di contattare l'amministratore del magazzino.",
+        "eventForbidden": "Non hai l'autorizzazione per importare questo magazzino.",
+        "generic": "Non è stato possibile aprire il campo. Riprovare più tardi."
+      },
+      "title": "Aprire il campo"
+    },
     "campImport": {
       "title": "Importare un campo da {provider}"
     },

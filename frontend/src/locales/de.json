@@ -914,6 +914,14 @@
     "campCreate": {
       "title": "Lager erstellen"
     },
+    "campHitobitoDeepLink": {
+      "errors": {
+        "campForbidden": "Dieses Lager wurde bereits importiert, du hast jedoch keinen Zugriff. Bitte wende dich an deinen Lager-Administrator.",
+        "eventForbidden": "Du hast keine Berechtigung dieses Lager zu importieren.",
+        "generic": "Das Lager konnte nicht geöffnet werden. Bitte versuche es später erneut."
+      },
+      "title": "Lager öffnen"
+    },
     "campImport": {
       "title": "Lager von {provider} importieren"
     },

@@ -3,6 +3,7 @@ import {
   HITOBITO_PROVIDERS,
   clearAuthorizationAttempt,
   hasAttemptedAuthorization,
+  hitobitoEventCampUri,
   hitobitoEventsUri,
   isAccessTokenInvalidError,
   isValidProvider,
@@ -50,6 +51,14 @@ describe('hitobitoEventsUri', () => {
 
   it('builds the item URI', () => {
     expect(hitobitoEventsUri('pbsmidata', '123')).toBe('/hitobito/pbsmidata/events/123')
+  })
+})
+
+describe('hitobitoEventCampUri', () => {
+  it('builds the deep link URI', () => {
+    expect(hitobitoEventCampUri('pbsmidata', '123')).toBe(
+      '/hitobito/pbsmidata/events/123/camp'
+    )
   })
 })
 

@@ -235,6 +235,21 @@ const router = createRouter({
       beforeEnter: all([requireAuth, requireHitobitoProvider]),
     },
     {
+      path: '/camps/hitobito/:provider/:eventId',
+      name: 'camps/hitobitoDeepLink',
+      components: {
+        navigation: NavigationDefault,
+        default: () => import('./views/CampHitobitoDeepLink.vue'),
+      },
+      props: {
+        default: (route) => ({
+          provider: route.params.provider,
+          eventId: route.params.eventId,
+        }),
+      },
+      beforeEnter: all([requireAuth, requireHitobitoProvider]),
+    },
+    {
       path: '/camps/invitation/rejected',
       name: 'invitationRejected',
       components: {

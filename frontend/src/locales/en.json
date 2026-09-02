@@ -914,6 +914,14 @@
     "campCreate": {
       "title": "Create a Camp"
     },
+    "campHitobitoDeepLink": {
+      "errors": {
+        "campForbidden": "This camp was already imported, but you don't have access to it. Please contact your camp administrator.",
+        "eventForbidden": "You don't have permission to import this camp.",
+        "generic": "The camp could not be opened. Please try again later."
+      },
+      "title": "Open camp"
+    },
     "campImport": {
       "title": "Import camp from {provider}"
     },

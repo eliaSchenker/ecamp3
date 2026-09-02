@@ -116,3 +116,21 @@ describe('camp import route', () => {
     expect(props).toEqual({ provider: 'pbsmidata', eventId: null })
   })
 })
+
+describe('camp hitobito deep link route', () => {
+  it('matches the deep link route', () => {
+    const resolved = router.resolve('/camps/hitobito/pbsmidata/123')
+    expect(resolved.name).toBe('camps/hitobitoDeepLink')
+  })
+
+  it('passes provider and eventId to the view', () => {
+    const resolved = router.resolve('/camps/hitobito/pbsmidata/123')
+    const props = resolved.matched[0].props.default(resolved)
+    expect(props).toEqual({ provider: 'pbsmidata', eventId: '123' })
+  })
+
+  it('does not shadow the import route', () => {
+    const resolved = router.resolve('/camps/hitobito/pbsmidata/import')
+    expect(resolved.name).toBe('camps/import')
+  })
+})

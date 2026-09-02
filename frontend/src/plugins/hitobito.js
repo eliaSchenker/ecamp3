@@ -30,6 +30,13 @@ export function hitobitoEventsUri(provider, eventId = null) {
   return eventId === null ? collection : `${collection}/${eventId}`
 }
 
+/**
+ * Deep link endpoint, resolving a Hitobito event to the eCamp camp created from it.
+ */
+export function hitobitoEventCampUri(provider, eventId) {
+  return `${hitobitoEventsUri(provider, eventId)}/camp`
+}
+
 export function redirectToHitobitoAuthorization(provider, callbackPath) {
   markAuthorizationAttempt(provider)
   const callback = encodeURIComponent(callbackPath)
@@ -37,10 +44,18 @@ export function redirectToHitobitoAuthorization(provider, callbackPath) {
   window.location.replace(url)
 }
 
+export const HITOBITO_ERROR_TYPES = {
+  accessTokenInvalid: '/errors/hitobito-access-token-invalid',
+  campForbidden: '/errors/hitobito-camp-forbidden',
+  eventForbidden: '/errors/hitobito-event-forbidden',
+  campNotFound: '/errors/hitobito-camp-not-found',
+  eventNotFound: '/errors/hitobito-event-not-found',
+}
+
 export function isAccessTokenInvalidError(error) {
   return (
     error?.response?.status === 403 &&
-    error?.response?.data?.type === '/errors/hitobito-access-token-invalid'
+    error?.response?.data?.type === HITOBITO_ERROR_TYPES.accessTokenInvalid
   )
 }
 
