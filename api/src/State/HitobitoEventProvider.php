@@ -29,8 +29,8 @@ class HitobitoEventProvider implements ProviderInterface {
 
         $client = $this->clientProvider->getClientForCurrentUser($provider);
 
-        if (isset($uriVariables['id'])) {
-            return $this->provideItem($provider, $client, $uriVariables['id']);
+        if (isset($uriVariables['eventId'])) {
+            return $this->provideItem($provider, $client, $uriVariables['eventId']);
         }
 
         return $this->provideCollection($provider, $client);

@@ -60770,6 +60770,152 @@ paths:
       summary: 'Retrieves the collection of HitobitoEvent resources.'
       tags:
         - HitobitoEvent
+  '/hitobito/{provider}/events/{eventId}':
+    get:
+      description: 'Get a Hitobito event by its id.'
+      operationId: api_hitobito_providerevents_eventId_get
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEvent identifier'
+          explode: false
+          in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+          style: simple
+        -
+          deprecated: false
+          description: 'HitobitoEvent identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonhal-read_details'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent-read_details'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonld-read_details'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.jsonapi'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HitobitoEvent.html-read_details'
+          description: 'HitobitoEvent resource'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'Not found'
+          links: []
+      summary: 'Retrieves a HitobitoEvent resource.'
+      tags:
+        - HitobitoEvent
+  '/hitobito/{provider}/events/{eventId}/camp':
+    get:
+      description: 'Retrieve the Camp which was created from the specified Hitobito event.'
+      operationId: api_hitobito_providerevents_eventIdcamp_get
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEventCamp identifier'
+          explode: false
+          in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+          style: simple
+        -
+          deprecated: false
+          description: 'HitobitoEventCamp identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonhal-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp-read'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonld-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.jsonapi'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/HitobitoEventCamp.html-read'
+          description: 'HitobitoEventCamp resource'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+        404:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'Not found'
+          links: []
+      summary: 'Retrieves a HitobitoEventCamp resource.'
+      tags:
+        - HitobitoEventCamp
   '/hitobito/{provider}/events/{eventId}/participants':
     get:
       description: 'Get all leaders and co-leaders of a Hitobito event.'
@@ -60844,152 +60990,6 @@ paths:
       summary: 'Retrieves the collection of HitobitoEventParticipant resources.'
       tags:
         - HitobitoEventParticipant
-  '/hitobito/{provider}/events/{id}':
-    get:
-      description: 'Get a Hitobito event by its id.'
-      operationId: api_hitobito_providerevents_id_get
-      parameters:
-        -
-          deprecated: false
-          description: 'HitobitoEvent identifier'
-          explode: false
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          style: simple
-        -
-          deprecated: false
-          description: 'HitobitoEvent identifier'
-          explode: false
-          in: path
-          name: provider
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        200:
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEvent.jsonhal-read_details'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEvent-read_details'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEvent.jsonld-read_details'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEvent.jsonapi'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/HitobitoEvent.html-read_details'
-          description: 'HitobitoEvent resource'
-        403:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Error.jsonld'
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Forbidden
-          links: []
-        404:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Error.jsonld'
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: 'Not found'
-          links: []
-      summary: 'Retrieves a HitobitoEvent resource.'
-      tags:
-        - HitobitoEvent
-  '/hitobito/{provider}/events/{id}/camp':
-    get:
-      description: 'Retrieve the Camp which was created from the specified Hitobito event.'
-      operationId: api_hitobito_providerevents_idcamp_get
-      parameters:
-        -
-          deprecated: false
-          description: 'HitobitoEventCamp identifier'
-          explode: false
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          style: simple
-        -
-          deprecated: false
-          description: 'HitobitoEventCamp identifier'
-          explode: false
-          in: path
-          name: provider
-          required: true
-          schema:
-            type: string
-          style: simple
-      responses:
-        200:
-          content:
-            application/hal+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEventCamp.jsonhal-read'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEventCamp-read'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEventCamp.jsonld-read'
-            application/vnd.api+json:
-              schema:
-                $ref: '#/components/schemas/HitobitoEventCamp.jsonapi'
-            text/html:
-              schema:
-                $ref: '#/components/schemas/HitobitoEventCamp.html-read'
-          description: 'HitobitoEventCamp resource'
-        403:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Error.jsonld'
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Forbidden
-          links: []
-        404:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/ld+json:
-              schema:
-                $ref: '#/components/schemas/Error.jsonld'
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: 'Not found'
-          links: []
-      summary: 'Retrieves a HitobitoEventCamp resource.'
-      tags:
-        - HitobitoEventCamp
   '/invitations/{inviteKey}/accept':
     patch:
       description: 'Use myInviteKey2 to accept an invitation in dev environment.'

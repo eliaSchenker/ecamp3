@@ -31,7 +31,7 @@ class HitobitoEventCampProvider implements ProviderInterface {
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): ?HitobitoEventCamp {
         $provider = HitobitoProvider::parse($uriVariables['provider']);
-        $eventId = $uriVariables['id'];
+        $eventId = $uriVariables['eventId'];
 
         // Retrieve camp by provider / event id
         $camp = $this->findCamp($provider, $eventId);
