@@ -241,6 +241,7 @@
         }
       },
       "campImportStep1": {
+        "alreadyImported": "Already imported",
         "event": "Camp",
         "noEvents": "No camp found",
         "search": "Search camp",

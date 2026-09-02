@@ -17,7 +17,18 @@
         data-testid="import-event-select"
         class="mb-2"
         @update:model-value="$emit('update:modelValue', $event)"
-      />
+      >
+        <template #item-append="{ item }">
+          <v-chip
+            v-if="item.isImported"
+            size="x-small"
+            class="align-self-center px-2 v-btn--has-bg"
+            data-testid="import-event-already-imported"
+          >
+            {{ $t('components.campImport.campImportStep1.alreadyImported') }}
+          </v-chip>
+        </template>
+      </e-autocomplete>
 
       <v-skeleton-loader v-if="isLoadingEvent" type="table" />
       <HitobitoEventSummary v-else-if="camp" :camp="camp" />
@@ -76,6 +87,8 @@ export default {
       return this.events.map((event) => ({
         value: event._meta.self,
         text: event.name,
+        isImported: event.isImported,
+        props: { disabled: event.isImported },
       }))
     },
   },

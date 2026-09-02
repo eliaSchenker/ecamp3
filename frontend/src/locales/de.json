@@ -241,6 +241,7 @@
         }
       },
       "campImportStep1": {
+        "alreadyImported": "Bereits importiert",
         "event": "Lager",
         "noEvents": "Kein Lager gefunden",
         "search": "Lager suchen",
