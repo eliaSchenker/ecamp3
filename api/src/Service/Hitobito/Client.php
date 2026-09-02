@@ -36,11 +36,9 @@ class Client implements ClientInterface {
             return [];
         }
 
-        // Fetch events from Hitobito. Note that filtering participation does not exclude the event entirely, it only
-        // excludes the participation from being listed in its relationships.
-        //
-        // There is a filter option to directly remove participations with certain roles (filter[participations.roles.type][eq]=...)
-        // However this currently results in an error on the Hitobito-side, so the filtering is performed manually in extractEvents.
+        // Fetch events from Hitobito. Note that filtering participations and roles does not exclude the event entirely,
+        // it only excludes the participations resp. roles from being listed in its relationships. The events the user
+        // is actually a leader of are derived from the included relationships in extractEvents.
         $response = $this->httpClient->request('GET', 'events', [
             'query' => [
                 // Include the participations of the current user, along with their roles
@@ -52,20 +50,22 @@ class Client implements ClientInterface {
                     'participations.participant_id' => ['eq' => $this->hitobitoUserId],
                     // Only include participation relationships of the type person
                     'participations.participant_type' => ['eq' => 'Person'],
+                    // Only include roles which allow the user to create a camp from the event
+                    'participations.roles.type' => ['eq' => implode(',', $roleTypes)],
                 ],
                 'fields' => [
                     'events' => 'name',
                     'event_participations' => 'event_id,active',
-                    'event_roles' => 'participation_id,type',
+                    'event_roles' => 'participation_id',
                 ],
-                // Maximum number of events returned. Since Hitobito cannot filter events by participation (see above)
-                // this number needs to be large enough so that enough relevant events are included. Multiple paginated
-                // requests are possible, however the eCamp request timeout must not be exceeded.
+                // Maximum number of events returned. Since Hitobito does not exclude events without a matching
+                // participation (see above) this number needs to be large enough so that enough relevant events are
+                // included. Multiple paginated requests are possible, however the eCamp request timeout must not be exceeded.
                 'page' => ['size' => 100],
             ],
         ])->toArray();
 
-        return $this->extractEvents($response, $roleTypes);
+        return $this->extractEvents($response);
     }
 
     /**
@@ -253,19 +253,15 @@ class Client implements ClientInterface {
      * Extracts relevant events (where the user is leader) from the /events response by checking included
      * participant relationships.
      *
-     * @param string[] $roleTypes
-     *
      * @return Event[]
      */
-    private function extractEvents(array $response, array $roleTypes): array {
-        // Gather all included participations
+    private function extractEvents(array $response): array {
+        // Gather the included participations and the ids of those holding one of the requested roles
         $participationIdsWithRole = [];
         $participations = [];
         foreach ($response['included'] ?? [] as $included) {
             if ('event_roles' === $included['type']) {
-                if (in_array($included['attributes']['type'], $roleTypes, true)) {
-                    $participationIdsWithRole[$included['attributes']['participation_id']] = true;
-                }
+                $participationIdsWithRole[$included['attributes']['participation_id']] = true;
             } elseif ('event_participations' === $included['type']) {
                 $participations[] = $included;
             }
