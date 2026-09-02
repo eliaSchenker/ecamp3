@@ -2,12 +2,12 @@
 
 namespace App\Tests\Api\Hitobito;
 
-use App\Tests\Api\ECampApiTestCase;
+use App\Service\Hitobito\MockClient;
 
 /**
  * @internal
  */
-class ListEventsTest extends ECampApiTestCase {
+class ListEventsTest extends HitobitoTestCase {
     public function testGetEventIsDeniedForAnonymousUser() {
         static::createBasicClient()->request('GET', '/hitobito/pbsmidata/events');
 
@@ -45,6 +45,49 @@ class ListEventsTest extends ECampApiTestCase {
                     [
                         'id' => 123,
                         'name' => 'Testlager',
+                        'isImported' => false,
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    public function testListEventsMarksEventsWithAnExistingCampAsImported() {
+        $this->linkCampToEvent('camp1');
+
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $client->request('GET', '/hitobito/pbsmidata/events');
+
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains([
+            '_embedded' => [
+                'items' => [
+                    [
+                        'id' => (int) MockClient::EVENT_ID_LEADER,
+                        'isImported' => true,
+                    ],
+                ],
+            ],
+        ]);
+    }
+
+    public function testListEventsMarksEventAsImportedEvenIfUserHasNoAccessToTheCamp() {
+        $this->linkCampToEvent('campUnrelated');
+
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $client->request('GET', '/hitobito/pbsmidata/events');
+
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains([
+            '_embedded' => [
+                'items' => [
+                    [
+                        'id' => (int) MockClient::EVENT_ID_LEADER,
+                        'isImported' => true,
                     ],
                 ],
             ],

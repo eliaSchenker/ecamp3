@@ -25,6 +25,15 @@ interface ClientInterface {
     public function getEventParticipations(string $eventId): array;
 
     /**
+     * Returns all people (first name, last name, nickname, email) that are leaders or co-leaders of the specified event.
+     *
+     * @param string[] $roleTypes
+     *
+     * @return EventParticipant[]
+     */
+    public function getEventParticipants(string $eventId, array $roleTypes): array;
+
+    /**
      * Returns the details of an event by its id.
      */
     public function getEvent(string $eventId): ?Event;

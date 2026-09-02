@@ -16,10 +16,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     operations: [
         new Get(
-            uriTemplate: '/hitobito/{provider}/events/{id}{._format}',
+            uriTemplate: '/hitobito/{provider}/events/{eventId}{._format}',
             uriVariables: [
                 'provider' => new Link(parameterName: 'provider', identifiers: ['provider']),
-                'id' => new Link(parameterName: 'id', identifiers: ['id']),
+                'eventId' => new Link(parameterName: 'eventId', identifiers: ['id']),
             ],
             openapi: new OpenApiOperation(description: 'Get a Hitobito event by its id.'),
             normalizationContext: self::ITEM_NORMALIZATION_CONTEXT,
@@ -52,6 +52,13 @@ class HitobitoEvent {
 
     #[Groups(['read'])]
     public string $name;
+
+    /**
+     * Whether a camp has already been created from this Hitobito event.
+     */
+    #[ApiProperty(writable: false, example: true)]
+    #[Groups(['read'])]
+    public bool $isImported = false;
 
     #[Groups(['details'])]
     public ?string $motto = null;

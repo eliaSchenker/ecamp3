@@ -33072,6 +33072,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33090,6 +33096,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         name:
           type: string
       type: object
@@ -33102,6 +33114,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33118,6 +33136,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         name:
           type: string
       type: object
@@ -33130,6 +33154,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33187,6 +33217,12 @@ components:
             id:
               example: '1234'
               type: string
+            isImported:
+              default: false
+              description: 'Whether a camp has already been created from this Hitobito event.'
+              example: true
+              readOnly: true
+              type: boolean
             name:
               type: string
           type: object
@@ -33202,6 +33238,12 @@ components:
             id:
               example: '1234'
               type: string
+            isImported:
+              default: false
+              description: 'Whether a camp has already been created from this Hitobito event.'
+              example: true
+              readOnly: true
+              type: boolean
             location:
               type:
                 - 'null'
@@ -33361,6 +33403,89 @@ components:
         startAt:
           type: string
       type: object
+    HitobitoEventParticipant:
+      properties:
+        email:
+          type: string
+        firstName:
+          type:
+            - 'null'
+            - string
+        lastName:
+          type:
+            - 'null'
+            - string
+        nickname:
+          type:
+            - 'null'
+            - string
+      type: object
+    HitobitoEventParticipant-read:
+      properties:
+        email:
+          type: string
+        firstName:
+          type:
+            - 'null'
+            - string
+        lastName:
+          type:
+            - 'null'
+            - string
+        nickname:
+          type:
+            - 'null'
+            - string
+      type: object
+    HitobitoEventParticipant.html-read:
+      properties:
+        email:
+          type: string
+        firstName:
+          type:
+            - 'null'
+            - string
+        lastName:
+          type:
+            - 'null'
+            - string
+        nickname:
+          type:
+            - 'null'
+            - string
+      type: object
+    HitobitoEventParticipant.jsonhal-read:
+      allOf:
+        - $ref: '#/components/schemas/HitobitoEventParticipant-read'
+        -
+          properties:
+            _links:
+              properties:
+                self:
+                  properties: { href: { format: iri-reference, type: string } }
+                  type: object
+              type: object
+          type: object
+    HitobitoEventParticipant.jsonld-read:
+      allOf:
+        - $ref: '#/components/schemas/HydraItemBaseSchema'
+        -
+          properties:
+            email:
+              type: string
+            firstName:
+              type:
+                - 'null'
+                - string
+            lastName:
+              type:
+                - 'null'
+                - string
+            nickname:
+              type:
+                - 'null'
+                - string
+          type: object
     HydraCollectionBaseSchema:
       allOf:
         - $ref: '#/components/schemas/HydraCollectionBaseSchemaNoPagination'
@@ -60687,17 +60812,17 @@ paths:
       summary: 'Retrieves the collection of HitobitoEvent resources.'
       tags:
         - HitobitoEvent
-  '/hitobito/{provider}/events/{id}':
+  '/hitobito/{provider}/events/{eventId}':
     get:
       description: 'Get a Hitobito event by its id.'
-      operationId: api_hitobito_providerevents_id_get
+      operationId: api_hitobito_providerevents_eventId_get
       parameters:
         -
           deprecated: false
           description: 'HitobitoEvent identifier'
           explode: false
           in: path
-          name: id
+          name: eventId
           required: true
           schema:
             type: string
@@ -60760,17 +60885,17 @@ paths:
       summary: 'Retrieves a HitobitoEvent resource.'
       tags:
         - HitobitoEvent
-  '/hitobito/{provider}/events/{id}/camp':
+  '/hitobito/{provider}/events/{eventId}/camp':
     get:
       description: 'Retrieve the Camp which was created from the specified Hitobito event.'
-      operationId: api_hitobito_providerevents_idcamp_get
+      operationId: api_hitobito_providerevents_eventIdcamp_get
       parameters:
         -
           deprecated: false
           description: 'HitobitoEventCamp identifier'
           explode: false
           in: path
-          name: id
+          name: eventId
           required: true
           schema:
             type: string
@@ -60833,6 +60958,80 @@ paths:
       summary: 'Retrieves a HitobitoEventCamp resource.'
       tags:
         - HitobitoEventCamp
+  '/hitobito/{provider}/events/{eventId}/participants':
+    get:
+      description: 'Get all leaders and co-leaders of a Hitobito event.'
+      operationId: api_hitobito_providerevents_eventIdparticipants_get_collection
+      parameters:
+        -
+          deprecated: false
+          description: 'HitobitoEventParticipant identifier'
+          explode: false
+          in: path
+          name: eventId
+          required: true
+          schema:
+            type: string
+          style: simple
+        -
+          deprecated: false
+          description: 'HitobitoEventParticipant identifier'
+          explode: false
+          in: path
+          name: provider
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        200:
+          content:
+            application/hal+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/HalCollectionBaseSchemaNoPagination' }
+                  - { properties: { _embedded: { additionalProperties: { items: { $ref: '#/components/schemas/HitobitoEventParticipant.jsonhal-read' }, type: array } } }, type: object }
+                description: 'HitobitoEventParticipant.jsonhal-read collection.'
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HitobitoEventParticipant-read'
+                type: array
+            application/ld+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/HydraCollectionBaseSchemaNoPagination' }
+                  - { properties: { member: { items: { $ref: '#/components/schemas/HitobitoEventParticipant.jsonld-read' }, type: array } }, required: [member], type: object }
+                description: 'HitobitoEventParticipant.jsonld-read collection.'
+                type: object
+            application/vnd.api+json:
+              schema:
+                allOf:
+                  - { $ref: '#/components/schemas/JsonApiCollectionBaseSchemaNoPagination' }
+                  - { properties: { data: { items: { properties: { attributes: { $ref: '#/components/schemas/HitobitoEventParticipant' }, id: { type: string }, type: { type: string } }, required: [id, type], type: object }, type: array } }, type: object }
+                description: 'HitobitoEventParticipant.jsonapi collection.'
+            text/html:
+              schema:
+                items:
+                  $ref: '#/components/schemas/HitobitoEventParticipant.html-read'
+                type: array
+          description: 'HitobitoEventParticipant collection'
+        403:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Error.jsonld'
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+          links: []
+      summary: 'Retrieves the collection of HitobitoEventParticipant resources.'
+      tags:
+        - HitobitoEventParticipant
   '/invitations/{inviteKey}/accept':
     patch:
       description: 'Use myInviteKey2 to accept an invitation in dev environment.'
@@ -64044,6 +64243,8 @@ tags:
     name: ColumnLayout
   - description: "Resource 'HitobitoEvent' operations."
     name: HitobitoEvent
+  - description: "Resource 'HitobitoEventParticipant' operations."
+    name: HitobitoEventParticipant
   - description: "Resource 'MaterialNode' operations."
     name: MaterialNode
   - description: "Resource 'MultiSelect' operations."

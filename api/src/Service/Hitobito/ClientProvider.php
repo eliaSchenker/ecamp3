@@ -32,7 +32,6 @@ class ClientProvider {
             return new MockClient();
         }
 
-        // Configure client based on the given provider
         $baseUrl = match ($provider) {
             HitobitoProvider::PBSMIDATA => $this->pbsmidataBaseUrl,
             HitobitoProvider::CEVIDB, HitobitoProvider::JUBLADB => throw new \InvalidArgumentException("Unsupported Hitobito provider \"{$provider->value}\""),

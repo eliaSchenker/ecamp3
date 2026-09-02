@@ -83,7 +83,6 @@ class HitobitoAPIOAuthController extends AbstractController {
         $client = $this->getClient($provider);
 
         try {
-            // Retrieve hitobito access token / user id
             $accessToken = $client->getAccessToken();
             $hitobitoUserId = $client->fetchUserFromToken($accessToken)->getId();
             $additionalData = $this->getAdditionalData($request);

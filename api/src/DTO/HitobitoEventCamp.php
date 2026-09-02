@@ -20,10 +20,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     operations: [
         new Get(
-            uriTemplate: '/hitobito/{provider}/events/{id}/camp{._format}',
+            uriTemplate: '/hitobito/{provider}/events/{eventId}/camp{._format}',
             uriVariables: [
                 'provider' => new Link(parameterName: 'provider', identifiers: ['provider']),
-                'id' => new Link(parameterName: 'id', identifiers: ['id']),
+                'eventId' => new Link(parameterName: 'eventId', identifiers: ['id']),
             ],
             openapi: new OpenApiOperation(description: 'Retrieve the Camp which was created from the specified Hitobito event.'),
             normalizationContext: ['groups' => ['read']],

@@ -31,9 +31,8 @@ class HitobitoEventCampProvider implements ProviderInterface {
 
     public function provide(Operation $operation, array $uriVariables = [], array $context = []): ?HitobitoEventCamp {
         $provider = HitobitoProvider::parse($uriVariables['provider']);
-        $eventId = $uriVariables['id'];
+        $eventId = $uriVariables['eventId'];
 
-        // Retrieve camp by provider / event id
         $camp = $this->findCamp($provider, $eventId);
 
         if (null === $camp) {
@@ -45,7 +44,6 @@ class HitobitoEventCampProvider implements ProviderInterface {
         }
 
         // Camp exists for the specified event, verify that the user has access
-
         if (!$this->security->isGranted('CAMP_COLLABORATOR', $camp)) {
             throw new HitobitoEventCampException(HitobitoEventCampExceptionType::CAMP_FORBIDDEN);
         }
@@ -62,11 +60,9 @@ class HitobitoEventCampProvider implements ProviderInterface {
     }
 
     private function checkEventIsImportable(HitobitoProvider $provider, string $eventId): void {
-        // Retrieve / verify access token and build a client for the current user
         $client = $this->clientProvider->getClientForCurrentUser($provider);
 
         try {
-            // Retrieve specified event from Hitobito
             $this->eventAccessChecker->checkAccess($provider, $client, $eventId);
         } catch (AccessDeniedHttpException) {
             // Event exists at Hitobito, but user doesn't have sufficient permissions

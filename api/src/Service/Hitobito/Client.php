@@ -8,6 +8,12 @@ use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Client implements ClientInterface {
+    // Requested page size when fetching participants
+    private const int PARTICIPANTS_PAGE_SIZE = 20;
+
+    // Maximum number of fetched pages when fetching participants (used to avoid eCamp request timeout)
+    private const int PARTICIPANTS_MAX_PAGES = 10;
+
     private readonly HttpClientInterface $httpClient;
     private readonly int $hitobitoUserId;
 
@@ -30,11 +36,9 @@ class Client implements ClientInterface {
             return [];
         }
 
-        // Fetch events from Hitobito. Note that filtering participation does not exclude the event entirely, it only
-        // excludes the participation from being listed in its relationships.
-        //
-        // There is a filter option to directly remove participations with certain roles (filter[participations.roles.type][eq]=...)
-        // However this currently results in an error on the Hitobito-side, so the filtering is performed manually in extractEvents.
+        // Fetch events from Hitobito. Note that filtering participations and roles does not exclude the event entirely,
+        // it only excludes the participations resp. roles from being listed in its relationships. The events the user
+        // is actually a leader of are derived from the included relationships in extractEvents.
         $response = $this->httpClient->request('GET', 'events', [
             'query' => [
                 // Include the participations of the current user, along with their roles
@@ -46,20 +50,22 @@ class Client implements ClientInterface {
                     'participations.participant_id' => ['eq' => $this->hitobitoUserId],
                     // Only include participation relationships of the type person
                     'participations.participant_type' => ['eq' => 'Person'],
+                    // Only include roles which allow the user to create a camp from the event
+                    'participations.roles.type' => ['eq' => implode(',', $roleTypes)],
                 ],
                 'fields' => [
                     'events' => 'name',
                     'event_participations' => 'event_id,active',
-                    'event_roles' => 'participation_id,type',
+                    'event_roles' => 'participation_id',
                 ],
-                // Maximum number of events returned. Since Hitobito cannot filter events by participation (see above)
-                // this number needs to be large enough so that enough relevant events are included. Multiple paginated
-                // requests are possible, however the eCamp request timeout must not be exceeded.
+                // Maximum number of events returned. Since Hitobito does not exclude events without a matching
+                // participation (see above) this number needs to be large enough so that enough relevant events are
+                // included. Multiple paginated requests are possible, however the eCamp request timeout must not be exceeded.
                 'page' => ['size' => 100],
             ],
         ])->toArray();
 
-        return $this->extractEvents($response, $roleTypes);
+        return $this->extractEvents($response);
     }
 
     /**
@@ -68,7 +74,6 @@ class Client implements ClientInterface {
     public function getEventParticipations(string $eventId): array {
         $response = $this->httpClient->request('GET', 'event_participations', [
             'query' => [
-                // include role entities
                 'include' => 'roles',
                 'filter' => [
                     'participant_id' => ['eq' => $this->hitobitoUserId],
@@ -110,18 +115,51 @@ class Client implements ClientInterface {
         return $participations;
     }
 
+    /**
+     * @return EventParticipant[]
+     */
+    public function getEventParticipants(string $eventId, array $roleTypes): array {
+        if ([] === $roleTypes) {
+            return [];
+        }
+
+        $participants = [];
+        $page = 1;
+
+        do {
+            $response = $this->httpClient->request('GET', 'event_participations', [
+                'query' => [
+                    // Include the role entities as well as the participating person
+                    'include' => 'roles,participant',
+                    'filter' => [
+                        'event_id' => ['eq' => $eventId],
+                    ],
+                    'fields' => [
+                        'event_participations' => 'active',
+                        'people' => 'first_name,last_name,nickname,email',
+                    ],
+                    'page' => ['number' => $page, 'size' => self::PARTICIPANTS_PAGE_SIZE],
+                ],
+            ])->toArray();
+
+            array_push($participants, ...$this->extractEventParticipants($response, $roleTypes));
+
+            ++$page;
+        } while (isset($response['links']['next']) && $page <= self::PARTICIPANTS_MAX_PAGES);
+
+        return $participants;
+    }
+
     public function getEvent(string $eventId): ?Event {
         try {
             $response = $this->httpClient->request('GET', "events/{$eventId}", [
                 'query' => ['include' => 'dates'],
             ])->toArray();
         } catch (ClientExceptionInterface $e) {
-            // Explicitly handle 404
             if (404 === $e->getResponse()->getStatusCode()) {
                 return null;
             }
 
-            // Re-throw any unexpected errors
             throw $e;
         }
 
@@ -147,22 +185,80 @@ class Client implements ClientInterface {
     }
 
     /**
-     * Extracts relevant events (where the user is leader) from the /events response by checking included
-     * participant relationships.
+     * Extracts the people of all active participations holding one of the given roles from a single page
+     * of the /event_participations response.
      *
      * @param string[] $roleTypes
      *
+     * @return EventParticipant[]
+     */
+    private function extractEventParticipants(array $response, array $roleTypes): array {
+        // Gather the role types and the people included in this page
+        $roleTypesById = [];
+        $peopleById = [];
+        foreach ($response['included'] ?? [] as $included) {
+            if ('event_roles' === $included['type']) {
+                $roleTypesById[$included['id']] = $included['attributes']['type'];
+            } elseif ('people' === $included['type']) {
+                $peopleById[$included['id']] = $included['attributes'];
+            }
+        }
+
+        $participants = [];
+        foreach ($response['data'] as $participation) {
+            // Discard inactive participations
+            if (!$participation['attributes']['active']) {
+                continue;
+            }
+
+            // Discard participations without any of the given roles
+            $participationRoleTypes = [];
+            foreach ($participation['relationships']['roles']['data'] ?? [] as $role) {
+                if (isset($roleTypesById[$role['id']])) {
+                    $participationRoleTypes[] = $roleTypesById[$role['id']];
+                }
+            }
+            if ([] === array_intersect($participationRoleTypes, $roleTypes)) {
+                continue;
+            }
+
+            // Discard participations whose person is not included in the relationships
+            $personId = $participation['relationships']['participant']['data']['id'] ?? null;
+            if (null === $personId || !isset($peopleById[$personId])) {
+                continue;
+            }
+
+            // Discard people without an email address
+            $person = $peopleById[$personId];
+            $email = $person['email'] ?? null;
+            if (null === $email || '' === $email) {
+                continue;
+            }
+
+            $participants[] = new EventParticipant(
+                $person['first_name'] ?? null,
+                $person['last_name'] ?? null,
+                $person['nickname'] ?? null,
+                $email,
+            );
+        }
+
+        return $participants;
+    }
+
+    /**
+     * Extracts relevant events (where the user is leader) from the /events response by checking included
+     * participant relationships.
+     *
      * @return Event[]
      */
-    private function extractEvents(array $response, array $roleTypes): array {
-        // Gather all included participations
+    private function extractEvents(array $response): array {
+        // Gather the included participations and the ids of those holding one of the requested roles
         $participationIdsWithRole = [];
         $participations = [];
         foreach ($response['included'] ?? [] as $included) {
             if ('event_roles' === $included['type']) {
-                if (in_array($included['attributes']['type'], $roleTypes, true)) {
-                    $participationIdsWithRole[$included['attributes']['participation_id']] = true;
-                }
+                $participationIdsWithRole[$included['attributes']['participation_id']] = true;
             } elseif ('event_participations' === $included['type']) {
                 $participations[] = $included;
             }
