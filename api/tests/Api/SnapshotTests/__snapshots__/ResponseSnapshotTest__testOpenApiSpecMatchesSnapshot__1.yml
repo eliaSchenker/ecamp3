@@ -33072,6 +33072,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33090,6 +33096,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         name:
           type: string
       type: object
@@ -33102,6 +33114,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33118,6 +33136,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         name:
           type: string
       type: object
@@ -33130,6 +33154,12 @@ components:
         id:
           example: '1234'
           type: string
+        isImported:
+          default: false
+          description: 'Whether a camp has already been created from this Hitobito event.'
+          example: true
+          readOnly: true
+          type: boolean
         location:
           type:
             - 'null'
@@ -33187,6 +33217,12 @@ components:
             id:
               example: '1234'
               type: string
+            isImported:
+              default: false
+              description: 'Whether a camp has already been created from this Hitobito event.'
+              example: true
+              readOnly: true
+              type: boolean
             name:
               type: string
           type: object
@@ -33202,6 +33238,12 @@ components:
             id:
               example: '1234'
               type: string
+            isImported:
+              default: false
+              description: 'Whether a camp has already been created from this Hitobito event.'
+              example: true
+              readOnly: true
+              type: boolean
             location:
               type:
                 - 'null'

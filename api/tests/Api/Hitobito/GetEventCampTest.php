@@ -2,17 +2,12 @@
 
 namespace App\Tests\Api\Hitobito;
 
-use App\Entity\Camp;
-use App\Repository\CampRepository;
-use App\Service\Hitobito\HitobitoProvider;
 use App\Service\Hitobito\MockClient;
-use App\Tests\Api\ECampApiTestCase;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @internal
  */
-class GetEventCampTest extends ECampApiTestCase {
+class GetEventCampTest extends HitobitoTestCase {
     public function testGetEventCampIsDeniedForAnonymousUser() {
         static::createBasicClient()->request('GET', '/hitobito/pbsmidata/events/'.MockClient::EVENT_ID_LEADER.'/camp');
 
@@ -88,26 +83,5 @@ class GetEventCampTest extends ECampApiTestCase {
             ],
             'id' => (int) MockClient::EVENT_ID_LEADER,
         ]);
-    }
-
-    /**
-     * Links the given fixture camp to Hitobito.
-     */
-    private function linkCampToEvent(string $fixtureName): Camp {
-        /** @var Camp $camp */
-        $camp = static::getFixture($fixtureName);
-
-        /** @var CampRepository $campRepository */
-        $campRepository = static::getContainer()->get(CampRepository::class);
-        $camp = $campRepository->find($camp->getId());
-
-        $camp->hitobitoProvider = HitobitoProvider::PBSMIDATA;
-        $camp->hitobitoEventId = MockClient::EVENT_ID_LEADER;
-
-        /** @var EntityManagerInterface $entityManager */
-        $entityManager = static::getContainer()->get(EntityManagerInterface::class);
-        $entityManager->flush();
-
-        return $camp;
     }
 }
