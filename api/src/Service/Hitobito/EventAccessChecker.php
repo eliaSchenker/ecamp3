@@ -20,8 +20,6 @@ class EventAccessChecker {
 
     // Same as LEADER_ROLE_TYPES but for co-leaders. People with this role should be invited to eCamp when triggering the invite
     // from Hitobito feature
-    // TODO remove phpstan ignore once COLEADER_ROLE_TYPES is used
-    /** @phpstan-ignore classConstant.unused */
     private const array COLEADER_ROLE_TYPES = [
         HitobitoProvider::PBSMIDATA->value => [
             'Event::Role::Leader',
@@ -55,6 +53,15 @@ class EventAccessChecker {
      */
     public function getLeaderRoleTypes(HitobitoProvider $provider): array {
         return self::LEADER_ROLE_TYPES[$provider->value] ?? [];
+    }
+
+    /**
+     * Returns the role types which identify a Hitobito user as a leader or co-leader of an event.
+     *
+     * @return string[]
+     */
+    public function getCoLeaderRoleTypes(HitobitoProvider $provider): array {
+        return self::COLEADER_ROLE_TYPES[$provider->value] ?? [];
     }
 
     /**
