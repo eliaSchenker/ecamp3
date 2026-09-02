@@ -3,12 +3,11 @@
 namespace App\Tests\Api\Hitobito;
 
 use App\Service\Hitobito\MockClient;
-use App\Tests\Api\ECampApiTestCase;
 
 /**
  * @internal
  */
-class GetEventTest extends ECampApiTestCase {
+class GetEventTest extends HitobitoTestCase {
     public function testGetEventIsDeniedForAnonymousUser() {
         static::createBasicClient()->request('GET', '/hitobito/pbsmidata/events/123');
 
@@ -59,6 +58,7 @@ class GetEventTest extends ECampApiTestCase {
         $this->assertJsonContains([
             'id' => 123,
             'name' => 'Testlager',
+            'isImported' => false,
             'motto' => 'Testmotto',
             'location' => 'Testort',
             'dates' => [
@@ -69,5 +69,29 @@ class GetEventTest extends ECampApiTestCase {
                 ],
             ],
         ]);
+    }
+
+    public function testGetEventMarksEventWithAnExistingCampAsImported() {
+        $this->linkCampToEvent('camp1');
+
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $client->request('GET', '/hitobito/pbsmidata/events/'.MockClient::EVENT_ID_LEADER);
+
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['isImported' => true]);
+    }
+
+    public function testGetEventMarksEventAsImportedEvenIfUserHasNoAccessToTheCamp() {
+        $this->linkCampToEvent('campUnrelated');
+
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $client->request('GET', '/hitobito/pbsmidata/events/'.MockClient::EVENT_ID_LEADER);
+
+        $this->assertResponseStatusCodeSame(200);
+        $this->assertJsonContains(['isImported' => true]);
     }
 }

@@ -53,6 +53,13 @@ class HitobitoEvent {
     #[Groups(['read'])]
     public string $name;
 
+    /**
+     * Whether a camp has already been created from this Hitobito event.
+     */
+    #[ApiProperty(writable: false, example: true)]
+    #[Groups(['read'])]
+    public bool $isImported = false;
+
     #[Groups(['details'])]
     public ?string $motto = null;
 
