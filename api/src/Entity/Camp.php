@@ -439,17 +439,31 @@ class Camp extends BaseEntity implements BelongsToCampInterface, CopyFromPrototy
 
     /**
      * The Hitobito provider (such as MiData) this camp was created from, if any.
+     * May only be set when creating a camp, and only together with hitobitoEventId.
      */
-    #[ApiProperty(writable: false, example: HitobitoProvider::PBSMIDATA->value)]
-    #[Groups(['read'])]
+    #[Assert\Expression(
+        '(this.hitobitoProvider == null) == (this.hitobitoEventId == null)',
+        message: 'hitobitoProvider and hitobitoEventId must be set together.',
+        groups: ['create']
+    )]
+    #[Assert\Expression(
+        'value == null or value.isSupported()',
+        message: 'This Hitobito provider is not supported.',
+        groups: ['create']
+    )]
+    #[ApiProperty(example: HitobitoProvider::PBSMIDATA->value)]
+    #[Groups(['read', 'create'])]
     #[ORM\Column(type: 'string', length: 16, nullable: true, enumType: HitobitoProvider::class)]
     public ?HitobitoProvider $hitobitoProvider = null;
 
     /**
      * The id of the corresponding event in Hitobito, if this camp was created from one.
+     * May only be set when creating a camp, and only together with hitobitoProvider.
      */
-    #[ApiProperty(writable: false, example: '1234')]
-    #[Groups(['read'])]
+    #[InputFilter\Trim]
+    #[Assert\Length(max: 255)]
+    #[ApiProperty(example: '1234')]
+    #[Groups(['read', 'create'])]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     public ?string $hitobitoEventId = null;
 
