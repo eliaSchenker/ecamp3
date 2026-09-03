@@ -135,11 +135,12 @@ export default {
     }
   },
   head() {
-    return {
-      title: this.$t('views.camp.hitobitoInvite.title', { provider: this.provider }),
-    }
+    return { title: this.title }
   },
   computed: {
+    title() {
+      return this.$t('views.camp.hitobitoInvite.title', { provider: this.provider })
+    },
     provider() {
       return this.$t(providerNameKey(this.camp.hitobitoProvider))
     },
