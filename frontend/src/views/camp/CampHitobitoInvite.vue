@@ -108,6 +108,7 @@ import {
   hasAttemptedAuthorization,
   hitobitoEventParticipantsUri,
   isAccessTokenInvalidError,
+  providerNameKey,
   redirectToHitobitoAuthorization,
 } from '@/plugins/hitobito.js'
 
@@ -140,7 +141,7 @@ export default {
   },
   computed: {
     provider() {
-      return this.$t(`components.campImport.providers.${this.camp.hitobitoProvider}`)
+      return this.$t(providerNameKey(this.camp.hitobitoProvider))
     },
     partitionedParticipants() {
       return partitionParticipants(this.participants, this.campEmails)

@@ -558,6 +558,19 @@ const router = createRouter({
       },
     },
     {
+      path: '/camps/:campId/:campShortTitle?/hitobito/sync',
+      name: 'camp/hitobitoSync',
+      components: {
+        navigation: NavigationCamp,
+        default: () => import('./views/camp/CampHitobitoSync.vue'),
+      },
+      beforeEnter: all([requireAuth, requireCamp, requireHitobitoCamp]),
+      props: {
+        navigation: (route) => ({ camp: campFromRoute(route) }),
+        default: (route) => ({ camp: campFromRoute(route) }),
+      },
+    },
+    {
       path: '/camps/:campId/:campShortTitle/program/activity/:activityId/:scheduleEntryId?/:activityName?',
       name: 'camp/activity',
       components: {
@@ -887,7 +900,7 @@ function getContentLayout(route) {
 
 /**
  * @param camp
- * @param subroute {'admin' | 'dashboard' | 'program' | 'material' | 'story' | 'home' | 'print' | 'hitobitoInvite' }
+ * @param subroute {'admin' | 'dashboard' | 'program' | 'material' | 'story' | 'home' | 'print' | 'hitobitoInvite' | 'hitobitoSync' }
  * @param query
  */
 export function campRoute(camp, subroute = 'dashboard', query = {}) {

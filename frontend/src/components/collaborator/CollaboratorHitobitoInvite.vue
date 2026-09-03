@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { providerIcon, providerIconColor } from '@/plugins/hitobito.js'
+import { providerIcon, providerIconColor, providerNameKey } from '@/plugins/hitobito.js'
 import { campRoute } from '@/router.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     provider() {
-      return this.$t(`components.campImport.providers.${this.camp.hitobitoProvider}`)
+      return this.$t(providerNameKey(this.camp.hitobitoProvider))
     },
     icon() {
       return providerIcon(this.camp.hitobitoProvider)

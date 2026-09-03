@@ -162,7 +162,35 @@ describe('camp hitobito invite route', () => {
   it('is built by campRoute', () => {
     expect(campRoute(camp, 'hitobitoInvite')).toEqual({
       name: 'camp/hitobitoInvite',
-      params: { campId: '25a82475e0b7', campShortTitle: 'sola-2026' },
+      params: { campId: '25a82475e0b7', campShortTitle: 'Sola-2026' },
+      query: {},
+    })
+  })
+})
+
+describe('camp hitobito sync route', () => {
+  const camp = {
+    id: '25a82475e0b7',
+    shortTitle: 'Sola 2026',
+    _meta: { loading: false },
+  }
+
+  it('matches the sync route', () => {
+    const resolved = router.resolve('/camps/25a82475e0b7/sola-2026/hitobito/sync')
+    expect(resolved.name).toBe('camp/hitobitoSync')
+    expect(resolved.params.campId).toBe('25a82475e0b7')
+  })
+
+  it('matches the sync route without a camp short title', () => {
+    const resolved = router.resolve('/camps/25a82475e0b7/hitobito/sync')
+    expect(resolved.name).toBe('camp/hitobitoSync')
+    expect(resolved.params.campId).toBe('25a82475e0b7')
+  })
+
+  it('is built by campRoute', () => {
+    expect(campRoute(camp, 'hitobitoSync')).toEqual({
+      name: 'camp/hitobitoSync',
+      params: { campId: '25a82475e0b7', campShortTitle: 'Sola-2026' },
       query: {},
     })
   })

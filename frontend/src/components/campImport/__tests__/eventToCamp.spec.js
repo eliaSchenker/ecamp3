@@ -68,6 +68,21 @@ describe('eventToCamp', () => {
     })
   })
 
+  describe('whitespace', () => {
+    it('collapses line breaks in the location into spaces', () => {
+      const camp = eventToCamp(
+        event({
+          location: 'Wiese oberhalb vom Pfadiheim Richtung Süden\n\nNeukirch-Egnach',
+        }),
+        provider
+      )
+
+      expect(camp.addressName).toBe(
+        'Wiese oberhalb vom Pfadiheim Richtung Süden Neukirch-Egnach'
+      )
+    })
+  })
+
   describe('missing values', () => {
     it('normalizes an empty motto and location to null', () => {
       const camp = eventToCamp(event({ motto: '', location: null }), provider)

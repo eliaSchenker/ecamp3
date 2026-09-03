@@ -17,6 +17,10 @@ export function isValidProvider(provider) {
   return HITOBITO_PROVIDERS.includes(provider)
 }
 
+export function providerNameKey(provider) {
+  return `global.hitobito.providers.${provider}`
+}
+
 export function providerIcon(provider) {
   return PROVIDER_ICONS[provider] ?? null
 }

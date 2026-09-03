@@ -51,6 +51,7 @@ import {
   hasAttemptedAuthorization,
   hitobitoEventsUri,
   isAccessTokenInvalidError,
+  providerNameKey,
   redirectToHitobitoAuthorization,
 } from '@/plugins/hitobito.js'
 
@@ -159,7 +160,7 @@ export default {
       } catch (error) {
         if (error?.response?.status === 409) {
           const message = this.$t('components.campImport.errors.alreadyExists', {
-            provider: this.$t(`components.campImport.providers.${this.provider}`),
+            provider: this.$t(providerNameKey(this.provider)),
           })
           if (this.hasFixedEvent) {
             this.$store.commit('addSnackbarMessage', message)

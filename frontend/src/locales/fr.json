@@ -106,6 +106,11 @@
         },
         "title": "Zone à risque"
       },
+      "campHitobitoSync": {
+        "linked": "Ce camp est lié à {provider}.",
+        "sync": "Synchroniser",
+        "title": "Synchroniser les infos du camp"
+      },
       "campMaterialLists": {
         "createMaterialList": "Créer une liste de matériel",
         "title": "Listes de matériel"
@@ -233,6 +238,13 @@
         "submitTooltipPrototype": "Tu dois encore choisir si tu veux utiliser un modèle de champ et lequel."
       }
     },
+    "campHitobitoSync": {
+      "hitobitoSyncDiffTable": {
+        "current": "Actuel (eCamp)",
+        "field": "Champ",
+        "updated": "Nouveau ({provider})"
+      }
+    },
     "campImport": {
       "campImport": {
         "steps": {
@@ -264,9 +276,6 @@
         },
         "period": "Période {number}",
         "value": "Valeur"
-      },
-      "providers": {
-        "pbsmidata": "MiData"
       }
     },
     "category": {
@@ -656,6 +665,11 @@
     "datetime": {
       "vuetifyTimePickerFormat": "24hr"
     },
+    "hitobito": {
+      "providers": {
+        "pbsmidata": "MiData"
+      }
+    },
     "info": {
       "offline": {
         "description": "Impossible d'enregistrer / de charger des données.",
@@ -856,6 +870,19 @@
         "newParticipants": "Invitations au camp",
         "newParticipantsDescription": "Ces personnes ne font pas encore partie du camp et seront invitées par e-mail.",
         "title": "Inviter depuis {provider}"
+      },
+      "hitobitoSync": {
+        "errors": {
+          "forbidden": "Tu n’as pas les autorisations nécessaires pour modifier ce camp.",
+          "loading": "Les données de {provider} n’ont pas pu être chargées. Réessaie plus tard.",
+          "noAccess": "Tu n’as pas accès à cet événement {provider}.",
+          "notFound": "Cet événement {provider} n’a pas été trouvé.",
+          "sync": "Les données n’ont pas pu être synchronisées. Réessaie plus tard."
+        },
+        "intro": "Les champs suivants ont été modifiés dans {provider} et seront écrasés lors de la synchronisation :",
+        "noChanges": "Aucune donnée n’a changé depuis la dernière synchronisation.",
+        "sync": "Synchroniser",
+        "title": "Synchroniser le camp avec {provider}"
       },
       "invitation": {
         "acceptCurrentAuth": "Accepter l'invitation avec le compte courant",

@@ -6,10 +6,17 @@ const MOTTO_MAX_LENGTH = 128
 const ADDRESS_NAME_MAX_LENGTH = 128
 const PERIOD_DESCRIPTION_MAX_LENGTH = 32
 
+/**
+ * Hitobito strings may contain newlines or other duplicate whitespace, collapse into one single space
+ */
+function collapseWhitespace(value) {
+  return value.replace(/[\p{C}\s]+/gu, ' ')
+}
+
 function truncate(value, maxLength) {
   if (value === null || value === undefined) return null
-  const truncated = value.slice(0, maxLength)
-  const trimmed = String(truncated).trim()
+  const normalized = collapseWhitespace(String(value)).trim()
+  const trimmed = normalized.slice(0, maxLength).trim()
   if (trimmed === '') return null
 
   return trimmed

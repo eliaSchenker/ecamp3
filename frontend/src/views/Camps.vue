@@ -43,7 +43,7 @@
                         :color="providerIconColor(provider)"
                         :icon="providerIcon(provider)"
                       />
-                      {{ $t(`components.campImport.providers.${provider}`) }}
+                      {{ $t(providerNameKey(provider)) }}
                     </v-list-item-title>
                   </v-list-item>
                 </v-list>
@@ -113,7 +113,12 @@ import ContentCard from '@/components/layout/ContentCard.vue'
 import ButtonAdd from '@/components/buttons/ButtonAdd.vue'
 import UserMeta from '@/components/navigation/UserMeta.vue'
 import CampListItem from '@/components/camp/CampListItem.vue'
-import { HITOBITO_PROVIDERS, providerIcon, providerIconColor } from '@/plugins/hitobito'
+import {
+  HITOBITO_PROVIDERS,
+  providerIcon,
+  providerIconColor,
+  providerNameKey,
+} from '@/plugins/hitobito'
 import { groupBy } from 'lodash-es'
 
 export default {
@@ -186,6 +191,7 @@ export default {
   methods: {
     providerIcon,
     providerIconColor,
+    providerNameKey,
     async loadCamps() {
       await this.$auth.loadUser()
       // Only reload if they were loaded before, to avoid console error

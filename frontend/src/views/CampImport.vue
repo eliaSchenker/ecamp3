@@ -9,6 +9,7 @@
 <script>
 import ContentCard from '@/components/layout/ContentCard.vue'
 import CampImport from '@/components/campImport/CampImport.vue'
+import { providerNameKey } from '@/plugins/hitobito.js'
 
 export default {
   name: 'CampImportView',
@@ -28,7 +29,7 @@ export default {
   computed: {
     title() {
       return this.$t('views.campImport.title', {
-        provider: this.$t(`components.campImport.providers.${this.provider}`),
+        provider: this.$t(providerNameKey(this.provider)),
       })
     },
   },
