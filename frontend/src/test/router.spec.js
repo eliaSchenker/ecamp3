@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import router, { materialListRoute } from '../router'
+import router, { campRoute, materialListRoute } from '../router'
 
 describe('materialListRoute', () => {
   const camp = {
@@ -132,5 +132,38 @@ describe('camp hitobito deep link route', () => {
   it('does not shadow the import route', () => {
     const resolved = router.resolve('/camps/hitobito/pbsmidata/import')
     expect(resolved.name).toBe('camps/import')
+  })
+})
+
+describe('camp hitobito invite route', () => {
+  const camp = {
+    id: '25a82475e0b7',
+    shortTitle: 'Sola 2026',
+    _meta: { loading: false },
+  }
+
+  it('matches the invite route', () => {
+    const resolved = router.resolve('/camps/25a82475e0b7/sola-2026/hitobito/invite')
+    expect(resolved.name).toBe('camp/hitobitoInvite')
+    expect(resolved.params.campId).toBe('25a82475e0b7')
+  })
+
+  it('matches the invite route without a camp short title', () => {
+    const resolved = router.resolve('/camps/25a82475e0b7/hitobito/invite')
+    expect(resolved.name).toBe('camp/hitobitoInvite')
+    expect(resolved.params.campId).toBe('25a82475e0b7')
+  })
+
+  it('does not shadow the hitobito deep link route', () => {
+    const resolved = router.resolve('/camps/hitobito/pbsmidata/123')
+    expect(resolved.name).toBe('camps/hitobitoDeepLink')
+  })
+
+  it('is built by campRoute', () => {
+    expect(campRoute(camp, 'hitobitoInvite')).toEqual({
+      name: 'camp/hitobitoInvite',
+      params: { campId: '25a82475e0b7', campShortTitle: 'sola-2026' },
+      query: {},
+    })
   })
 })

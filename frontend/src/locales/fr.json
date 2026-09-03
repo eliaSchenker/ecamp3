@@ -327,6 +327,9 @@
         "overrideAvatar": "Remplacer l'avatar pour ce camp",
         "roleHint": "Chaque camp nécessite au moins une personne disposant de droits d'administrateur."
       },
+      "collaboratorHitobitoInvite": {
+        "inviteCta": "Inviter depuis {provider}"
+      },
       "promptCollaboratorDeactivate": {
         "deactivate": "Désactiver",
         "leaveCamp": "Quitter le camp",
@@ -837,6 +840,22 @@
         "noEntries": "Aucune activité trouvée. Essaie d'effacer les filtres de sélection et/ou de recharger la page.",
         "today": "Aujourd'hui",
         "welcome": "Bienvenue dans ton nouveau camp. Il n'y a pas encore d'activités définies."
+      },
+      "hitobitoInvite": {
+        "allInvited": "Toutes les personnes co-responsables de {provider} ont déjà été invitées.",
+        "errors": {
+          "invite": "Les invitations n’ont pas pu être envoyées : {emails}",
+          "loading": "Les personnes co-responsables n’ont pas pu être chargées. Réessaie plus tard.",
+          "noAccess": "Tu n’as pas accès à cet événement {provider}.",
+          "notFound": "Cet événement {provider} n’a pas été trouvé."
+        },
+        "existingParticipants": "Font déjà partie du camp",
+        "existingParticipantsDescription": "Ces personnes font déjà partie du camp.",
+        "intro": "Les personnes suivantes sont co-responsables de l’événement {provider} :",
+        "invite": "Envoyer les invitations",
+        "newParticipants": "Invitations au camp",
+        "newParticipantsDescription": "Ces personnes ne font pas encore partie du camp et seront invitées par e-mail.",
+        "title": "Inviter depuis {provider}"
       },
       "invitation": {
         "acceptCurrentAuth": "Accepter l'invitation avec le compte courant",

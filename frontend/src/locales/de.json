@@ -330,6 +330,9 @@
         "overrideAvatar": "Avatar für dieses Lager überschreiben",
         "roleHint": "Jedes Lager benötigt mindestens eine Person mit Administrationsrechten."
       },
+      "collaboratorHitobitoInvite": {
+        "inviteCta": "Aus {provider} einladen"
+      },
       "promptCollaboratorDeactivate": {
         "deactivate": "Deaktivieren",
         "leaveCamp": "Lager verlassen",
@@ -846,6 +849,22 @@
         "noEntries": "Keine Aktivitäten gefunden. Versuche die Filter zu entfernen oder lade die Seite neu.",
         "today": "Heute",
         "welcome": "Willkommen in deinem neuen Lager. Es sind noch keine Aktivitäten erfasst. "
+      },
+      "hitobitoInvite": {
+        "allInvited": "Es wurden bereits alle Mitleitenden aus {provider} eingeladen.",
+        "errors": {
+          "invite": "Die Einladungen konnten nicht verschickt werden: {emails}",
+          "loading": "Die Mitleitenden konnten nicht geladen werden. Bitte versuche es später erneut.",
+          "noAccess": "Du hast keinen Zugriff auf dieses {provider}-Event.",
+          "notFound": "Dieses {provider}-Event wurde nicht gefunden."
+        },
+        "existingParticipants": "Bereits Teil des Lagers",
+        "existingParticipantsDescription": "Diese Personen sind bereits Teil des Lagers.",
+        "intro": "Die folgenden Personen sind Mitleitende im {provider}-Event:",
+        "invite": "Einladungen verschicken",
+        "newParticipants": "Einladungen ins Lager",
+        "newParticipantsDescription": "Diese Personen sind noch nicht Teil vom Lager und werden per E-Mail eingeladen.",
+        "title": "Aus {provider} einladen"
       },
       "invitation": {
         "acceptCurrentAuth": "Einladung mit aktuellem Account akzeptieren",

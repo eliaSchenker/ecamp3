@@ -31,6 +31,13 @@ export function hitobitoEventsUri(provider, eventId = null) {
 }
 
 /**
+ * Endpoint listing the leaders and co-leaders of a Hitobito event.
+ */
+export function hitobitoEventParticipantsUri(provider, eventId) {
+  return `${hitobitoEventsUri(provider, eventId)}/participants`
+}
+
+/**
  * Deep link endpoint, resolving a Hitobito event to the eCamp camp created from it.
  */
 export function hitobitoEventCampUri(provider, eventId) {

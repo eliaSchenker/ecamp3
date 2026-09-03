@@ -267,6 +267,9 @@
         "overrideAvatar": "Sovrascrivere l'avatar per questo campo",
         "roleHint": "Ogni campo ha bisogno di almeno una persona con diritti di amministratore."
       },
+      "collaboratorHitobitoInvite": {
+        "inviteCta": "Invitare da {provider}"
+      },
       "promptCollaboratorDeactivate": {
         "deactivate": "Disattivare",
         "warningText": "Vuoi disattivare '{name}'?"
@@ -700,6 +703,22 @@
         "noEntries": "Non sono state trovate attività. Prova a cancellare i filtri di selezione e/o a ricaricare la pagina.",
         "today": "Oggi",
         "welcome": "Benvenuto nel tuo nuovo campo. Non ci sono ancora attività definite."
+      },
+      "hitobitoInvite": {
+        "allInvited": "Tutti i co-responsabili di {provider} sono già stati invitati.",
+        "errors": {
+          "invite": "Non è stato possibile inviare gli inviti: {emails}",
+          "loading": "Non è stato possibile caricare i co-responsabili. Riprovare più tardi.",
+          "noAccess": "Non hai accesso a questo evento {provider}.",
+          "notFound": "Questo evento {provider} non è stato trovato."
+        },
+        "existingParticipants": "Già parte del campo",
+        "existingParticipantsDescription": "Queste persone fanno già parte del campo.",
+        "intro": "Le seguenti persone sono co-responsabili dell’evento {provider}:",
+        "invite": "Inviare gli inviti",
+        "newParticipants": "Inviti al campo",
+        "newParticipantsDescription": "Queste persone non fanno ancora parte del campo e saranno invitate via e-mail.",
+        "title": "Invitare da {provider}"
       },
       "invitation": {
         "acceptCurrentAuth": "Accetta l'invito con un conto corrente",

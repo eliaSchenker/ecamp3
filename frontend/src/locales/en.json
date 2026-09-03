@@ -330,6 +330,9 @@
         "overrideAvatar": "Overwrite avatar for this camp",
         "roleHint": "Each camp needs at least one person with administrative rights."
       },
+      "collaboratorHitobitoInvite": {
+        "inviteCta": "Invite from {provider}"
+      },
       "promptCollaboratorDeactivate": {
         "deactivate": "Deactivate",
         "leaveCamp": "Leave camp",
@@ -846,6 +849,22 @@
         "noEntries": "No activities found. Try clearing the selection filters and/or reloading the page.",
         "today": "Today",
         "welcome": "Welcome to your new camp. There aren't any activities defined yet."
+      },
+      "hitobitoInvite": {
+        "allInvited": "All co-leaders from {provider} have already been invited.",
+        "errors": {
+          "invite": "The invitations could not be sent: {emails}",
+          "loading": "The co-leaders could not be loaded. Please try again later.",
+          "noAccess": "You do not have access to this {provider} event.",
+          "notFound": "This {provider} event could not be found."
+        },
+        "existingParticipants": "Already part of the camp",
+        "existingParticipantsDescription": "These people are already part of the camp.",
+        "intro": "The following people are co-leaders of the {provider} event:",
+        "invite": "Send invitations",
+        "newParticipants": "Invitations to the camp",
+        "newParticipantsDescription": "These people are not part of the camp yet and will be invited by email.",
+        "title": "Invite from {provider}"
       },
       "invitation": {
         "acceptCurrentAuth": "Accept invitation with current account",

@@ -545,6 +545,19 @@ const router = createRouter({
       ],
     },
     {
+      path: '/camps/:campId/:campShortTitle?/hitobito/invite',
+      name: 'camp/hitobitoInvite',
+      components: {
+        navigation: NavigationCamp,
+        default: () => import('./views/camp/CampHitobitoInvite.vue'),
+      },
+      beforeEnter: all([requireAuth, requireCamp, requireHitobitoCamp]),
+      props: {
+        navigation: (route) => ({ camp: campFromRoute(route) }),
+        default: (route) => ({ camp: campFromRoute(route) }),
+      },
+    },
+    {
       path: '/camps/:campId/:campShortTitle/program/activity/:activityId/:scheduleEntryId?/:activityName?',
       name: 'camp/activity',
       components: {
@@ -641,6 +654,23 @@ function requireAdmin(to, from, next) {
 
 function requireHitobitoProvider(to, from, next) {
   if (isValidProvider(to.params.provider)) {
+    next()
+  } else {
+    next({
+      name: 'PageNotFound',
+      params: [to.fullPath, ''],
+      replace: true,
+    })
+  }
+}
+
+/**
+ * Only allow entering the route when the camp is linked to a Hitobito event.
+ * Must run after requireCamp, which ensures the camp is loaded.
+ */
+function requireHitobitoCamp(to, from, next) {
+  const camp = campFromRoute(to)
+  if (camp && isValidProvider(camp.hitobitoProvider) && camp.hitobitoEventId) {
     next()
   } else {
     next({
@@ -857,7 +887,7 @@ function getContentLayout(route) {
 
 /**
  * @param camp
- * @param subroute {'admin' | 'dashboard' | 'program' | 'material' | 'story' | 'home' | 'print' }
+ * @param subroute {'admin' | 'dashboard' | 'program' | 'material' | 'story' | 'home' | 'print' | 'hitobitoInvite' }
  * @param query
  */
 export function campRoute(camp, subroute = 'dashboard', query = {}) {
