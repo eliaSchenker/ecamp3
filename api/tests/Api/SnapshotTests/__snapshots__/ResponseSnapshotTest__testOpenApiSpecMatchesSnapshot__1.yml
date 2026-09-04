@@ -40469,7 +40469,7 @@ components:
           readOnly: true
           type: integer
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40548,7 +40548,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40601,7 +40601,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40671,7 +40671,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40741,7 +40741,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40811,7 +40811,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40881,7 +40881,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -40951,7 +40951,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41021,7 +41021,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41091,7 +41091,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41161,7 +41161,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41237,7 +41237,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41307,7 +41307,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41397,7 +41397,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41444,7 +41444,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41497,7 +41497,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41567,7 +41567,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41637,7 +41637,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41707,7 +41707,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41777,7 +41777,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41847,7 +41847,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41917,7 +41917,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -41987,7 +41987,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42057,7 +42057,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42133,7 +42133,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42203,7 +42203,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42373,7 +42373,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42449,7 +42449,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42525,7 +42525,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42601,7 +42601,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42677,7 +42677,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42753,7 +42753,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42829,7 +42829,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42905,7 +42905,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -42982,7 +42982,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -43061,7 +43061,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
@@ -43137,7 +43137,7 @@ components:
           format: date
           type: string
         hitobitoId:
-          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          description: 'The id of the corresponding event date in Hitobito, if this period was created from one.'
           example: '5678'
           maxLength: 255
           type:
