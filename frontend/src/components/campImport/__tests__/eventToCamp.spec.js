@@ -11,6 +11,7 @@ function event(overrides = {}) {
     location: 'Testort',
     dates: [
       {
+        id: 789,
         label: 'Hauptlager',
         startAt: '2026-01-01T00:00:00+00:00',
         finishAt: '2026-02-01T00:00:00+00:00',
@@ -26,7 +27,14 @@ describe('eventToCamp', () => {
       title: 'Testlager',
       motto: 'Testmotto',
       addressName: 'Testort',
-      periods: [{ description: 'Hauptlager', start: '2026-01-01', end: '2026-02-01' }],
+      periods: [
+        {
+          description: 'Hauptlager',
+          start: '2026-01-01',
+          end: '2026-02-01',
+          hitobitoId: '789',
+        },
+      ],
       hitobitoProvider: 'pbsmidata',
       hitobitoEventId: '123',
     })
@@ -136,8 +144,14 @@ describe('eventToCamp', () => {
       const camp = eventToCamp(
         event({
           dates: [
-            { label: 'Vorlager', startAt: '2026-01-01T00:00:00+00:00', finishAt: null },
             {
+              id: 1,
+              label: 'Vorlager',
+              startAt: '2026-01-01T00:00:00+00:00',
+              finishAt: null,
+            },
+            {
+              id: 2,
               label: 'Hauptlager',
               startAt: '2026-01-02T00:00:00+00:00',
               finishAt: '2026-01-09T00:00:00+00:00',
@@ -147,8 +161,18 @@ describe('eventToCamp', () => {
         provider
       )
       expect(camp.periods).toEqual([
-        { description: 'Vorlager', start: '2026-01-01', end: '2026-01-01' },
-        { description: 'Hauptlager', start: '2026-01-02', end: '2026-01-09' },
+        {
+          description: 'Vorlager',
+          start: '2026-01-01',
+          end: '2026-01-01',
+          hitobitoId: '1',
+        },
+        {
+          description: 'Hauptlager',
+          start: '2026-01-02',
+          end: '2026-01-09',
+          hitobitoId: '2',
+        },
       ])
     })
 

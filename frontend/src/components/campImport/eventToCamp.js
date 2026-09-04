@@ -45,6 +45,7 @@ export function eventToCamp(event, provider) {
       start: toDate(date.startAt),
       // optional at Hitobito, use start as fallback if not set
       end: toDate(date.finishAt ?? date.startAt),
+      hitobitoId: String(date.id),
     })),
     hitobitoProvider: provider,
     hitobitoEventId: String(event.id),
