@@ -33357,6 +33357,9 @@ components:
           type:
             - 'null'
             - string
+        id:
+          example: '5678'
+          type: string
         label:
           type:
             - 'null'
@@ -33370,6 +33373,9 @@ components:
           type:
             - 'null'
             - string
+        id:
+          example: '5678'
+          type: string
         label:
           type:
             - 'null'
@@ -33383,6 +33389,9 @@ components:
           type:
             - 'null'
             - string
+        id:
+          example: '5678'
+          type: string
         label:
           type:
             - 'null'
@@ -33396,6 +33405,9 @@ components:
           type:
             - 'null'
             - string
+        id:
+          example: '5678'
+          type: string
         label:
           type:
             - 'null'
@@ -40456,6 +40468,13 @@ components:
           description: 'The day number of the first Day in period.'
           readOnly: true
           type: integer
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40528,6 +40547,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         moveScheduleEntries:
           default: true
           description: |-
@@ -40574,6 +40600,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40637,6 +40670,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40700,6 +40740,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40763,6 +40810,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40826,6 +40880,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40889,6 +40950,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -40952,6 +41020,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41015,6 +41090,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41078,6 +41160,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41147,6 +41236,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41210,6 +41306,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41293,6 +41396,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         moveScheduleEntries:
           default: true
           description: |-
@@ -41333,6 +41443,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         moveScheduleEntries:
           default: true
           description: |-
@@ -41379,6 +41496,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41442,6 +41566,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41505,6 +41636,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41568,6 +41706,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41631,6 +41776,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41694,6 +41846,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41757,6 +41916,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41820,6 +41986,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41883,6 +42056,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -41952,6 +42132,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42015,6 +42202,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42178,6 +42372,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42247,6 +42448,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42316,6 +42524,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42385,6 +42600,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42454,6 +42676,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42523,6 +42752,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42592,6 +42828,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42661,6 +42904,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42731,6 +42981,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42803,6 +43060,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d
@@ -42872,6 +43136,13 @@ components:
           example: '2022-01-08'
           format: date
           type: string
+        hitobitoId:
+          description: 'The id of the corresponding date in Hitobito, if this period was created from one.'
+          example: '5678'
+          maxLength: 255
+          type:
+            - 'null'
+            - string
         id:
           description: 'An internal, unique, randomly generated identifier of this entity.'
           example: 1a2b3c4d

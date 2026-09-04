@@ -168,6 +168,7 @@ class Client implements ClientInterface {
         foreach ($response['included'] ?? [] as $included) {
             if ('dates' === $included['type']) {
                 $dates[] = new EventDate(
+                    $included['id'],
                     $included['attributes']['label'],
                     $included['attributes']['start_at'],
                     $included['attributes']['finish_at'],

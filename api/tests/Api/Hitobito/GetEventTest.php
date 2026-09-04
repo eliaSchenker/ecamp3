@@ -63,6 +63,7 @@ class GetEventTest extends HitobitoTestCase {
             'location' => 'Testort',
             'dates' => [
                 [
+                    'id' => 789,
                     'label' => 'Hauptlager',
                     'startAt' => '2026-01-01T00:00:00+00:00',
                     'finishAt' => '2026-02-01T00:00:00+00:00',
