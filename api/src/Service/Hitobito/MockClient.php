@@ -10,6 +10,7 @@ namespace App\Service\Hitobito;
 class MockClient implements ClientInterface {
     public const string EVENT_ID_LEADER = '123';
     public const string EVENT_ID_COLEADER = '456';
+    public const string EVENT_DATE_ID = '789';
 
     public function getUpcomingEvents(array $roleTypes): array {
         $events = [];
@@ -54,6 +55,7 @@ class MockClient implements ClientInterface {
                 'Testort',
                 [
                     new EventDate(
+                        self::EVENT_DATE_ID,
                         'Hauptlager',
                         '2026-01-01T00:00:00+00:00',
                         '2026-02-01T00:00:00+00:00',

@@ -13,7 +13,7 @@ use Doctrine\Migrations\AbstractMigration;
 final class Version20260731145532 extends AbstractMigration {
     #[\Override]
     public function getDescription(): string {
-        return 'Add hitobitoProvider and hitobitoEventId to camp';
+        return 'Add hitobitoProvider and hitobitoEventId to camp, hitobitoId to period';
     }
 
     public function up(Schema $schema): void {
@@ -21,6 +21,7 @@ final class Version20260731145532 extends AbstractMigration {
         $this->addSql('ALTER TABLE camp ADD hitobitoProvider VARCHAR(16) DEFAULT NULL');
         $this->addSql('ALTER TABLE camp ADD hitobitoEventId VARCHAR(255) DEFAULT NULL');
         $this->addSql('CREATE UNIQUE INDEX hitobitoprovider_hitobitoeventid_unique ON camp (hitobitoProvider, hitobitoEventId)');
+        $this->addSql('ALTER TABLE period ADD hitobitoId VARCHAR(255) DEFAULT NULL');
     }
 
     #[\Override]
@@ -29,5 +30,6 @@ final class Version20260731145532 extends AbstractMigration {
         $this->addSql('DROP INDEX hitobitoprovider_hitobitoeventid_unique');
         $this->addSql('ALTER TABLE camp DROP hitobitoProvider');
         $this->addSql('ALTER TABLE camp DROP hitobitoEventId');
+        $this->addSql('ALTER TABLE period DROP hitobitoId');
     }
 }

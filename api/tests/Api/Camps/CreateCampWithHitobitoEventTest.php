@@ -137,6 +137,56 @@ class CreateCampWithHitobitoEventTest extends ECampApiTestCase {
         $this->assertResponseStatusCodeSame(409);
     }
 
+    public function testCreateCampStoresTheHitobitoIdOfThePeriods() {
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $response = $client->request('POST', '/camps', ['json' => $this->getExampleWritePayload([
+            'hitobitoProvider' => HitobitoProvider::PBSMIDATA->value,
+            'hitobitoEventId' => MockClient::EVENT_ID_LEADER,
+            'periods' => [
+                [
+                    'description' => 'Hauptlager',
+                    'start' => '2026-01-01',
+                    'end' => '2026-02-01',
+                    'hitobitoId' => MockClient::EVENT_DATE_ID,
+                ],
+            ],
+        ])]);
+
+        $this->assertResponseStatusCodeSame(201);
+
+        /** @var Camp $camp */
+        $camp = $this->getEntityManager()->getRepository(Camp::class)->find($response->toArray()['id']);
+        $this->assertSame(MockClient::EVENT_DATE_ID, $camp->periods[0]->hitobitoId);
+    }
+
+    public function testCreateCampValidatesPeriodHitobitoIdWithoutHitobitoEvent() {
+        $client = static::createClientWithCredentials();
+        static::addHitobitoAccessTokenCookie($client);
+
+        $client->request('POST', '/camps', ['json' => $this->getExampleWritePayload([
+            'periods' => [
+                [
+                    'description' => 'Hauptlager',
+                    'start' => '2026-01-01',
+                    'end' => '2026-02-01',
+                    'hitobitoId' => MockClient::EVENT_DATE_ID,
+                ],
+            ],
+        ])]);
+
+        $this->assertResponseStatusCodeSame(422);
+        $this->assertJsonContains([
+            'violations' => [
+                [
+                    'propertyPath' => 'periods[0].hitobitoId',
+                    'message' => 'hitobitoId may only be set on periods of a camp that is linked to a Hitobito event.',
+                ],
+            ],
+        ]);
+    }
+
     public function testHitobitoFieldsAreNotWritableOnUpdate() {
         $client = static::createClientWithCredentials();
         static::addHitobitoAccessTokenCookie($client);

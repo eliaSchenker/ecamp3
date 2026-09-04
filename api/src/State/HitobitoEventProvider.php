@@ -93,7 +93,7 @@ class HitobitoEventProvider implements ProviderInterface {
         $hitobitoEvent->isImported = $isImported;
 
         $hitobitoEvent->dates = array_map(
-            static fn ($date) => new HitobitoEventDate($date->label, $date->startAt, $date->finishAt),
+            static fn ($date) => new HitobitoEventDate($date->id, $date->label, $date->startAt, $date->finishAt),
             $event->dates
         );
 
